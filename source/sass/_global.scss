@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500&display=swap');
+*{
+    padding: 0px ;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+$const-box-shadow: rgba(0,0,0,0.2);
+$blue: #5176E4;
+$orange: #FCB053;
+$yellow: #F5D04C;
+$font-muted-color: #6D6F88;
+$border-color: #CFCFCF;
+
+$box-shadow: rgba(0,0,0,0.2);
+
+$sidebar-mini-color: #CAE2FF;
+$sidebar-hover-color: #678AF4;
+
+$breakpoint:(
+    "small-mobile": "max-width: 320px",
+    "mobile": "max-width: 428px",
+    "tablet": "max-width: 768px",
+    "laptop": "max-width: 1280px",
+);
+
+@mixin breakpoint($value){
+    $my-map: map-get($breakpoint , $value );
+    @if $my-map{
+        @media (#{$my-map}) {
+            @content;
+        }
+    }
+    @else{
+        @error "no break point"
+    }
+};

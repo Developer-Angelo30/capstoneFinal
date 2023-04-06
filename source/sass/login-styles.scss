@@ -1,0 +1,181 @@
+@import "./global";
+
+#login-section{
+    background-image: url('../../assets/images/bg-photo.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+
+    .center-box{
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        height: 600px;
+        width: 1000px;
+        border-radius: 20px;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .left{
+            position: relative;
+
+            @mixin left-configure{
+                position: absolute;
+                bottom: 0px;
+                border-radius: 20px 0px 200px 20px;
+            }
+            
+            .yellow{
+                @include left-configure();
+                height: 600px;
+                width: 100%;
+                background-color: $yellow;
+            }
+
+            .orange{
+                @include left-configure();
+                height: 550px;
+                width: 100%;
+                background-color: $orange;
+                padding: 20px;
+
+                &:hover{
+                    transition: 1s;
+                    bottom: 70px;
+                    border-radius: 20px 20px 200px 20px;
+                }
+
+                h5{
+                    color: white;
+                    font-size: 16px;
+                    span{
+                        background-color: #29396D;
+                        padding: 5px;
+                        border-radius: 5px;
+                        margin: 10px 2px;
+                        font-size: 18px;
+                    }
+                }
+
+                img{
+                    position: relative;
+                    width: 100%
+                }
+
+               
+            }
+
+            .blue{
+                @include left-configure();
+                height: 500px;
+                width: 100%;
+                background-color: $blue;
+            }
+
+        }
+
+        .right{
+            position: relative;
+
+            @mixin right-configure{
+                position: absolute;
+                bottom: 0px;
+                border-radius: 0px 20px 20px 0px;
+                width: 100%;
+            }
+
+            .yellow{
+                @include right-configure();
+                height: 600px;
+                background-color: $yellow;
+            }
+
+            .orange{
+                @include right-configure();
+                height: 550px;
+                background-color: $orange;
+            }
+
+            .white{
+                @include right-configure();
+                height: 600px;
+                background-color: white;
+                border-radius: 110px 20px 20px 0px;
+                position: relative;
+
+                form{
+                    position: absolute;
+                    top: 43%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    width: 400px;
+
+                    img{
+                        height: 150px;
+                        width: 150px;
+                        border-radius: 50%;
+                    }
+
+                    .form-group{
+                        margin-top: 20px;
+                        background-color: $blue;
+                        display: grid;
+                        grid-template-columns: 1fr 50px;
+                        width: 100%;
+                        position: relative;
+
+                        input{
+                            height: 40px;
+                            width: 100%;
+                            padding: 0 10px;
+                            border: 1px solid $blue;
+                            outline: none;
+                            background-color: #f2f2f2;
+                        }
+
+                        i{
+                            background-color: $blue;
+                            margin-top: 10px;
+                            text-align: center;
+                            font-size: 18px;
+                            color: white;
+                        }
+
+                    }
+                    small{
+                        color: red;
+                        text-align: left;
+                        display: none;
+                        
+                    }
+
+                    button{
+                        color: white;
+                        background-color: $blue;
+                        cursor: pointer;
+                        height: 40px;
+                        width: 100%;
+                        border-radius: 20px;
+                        outline: none;
+                        border: 1px solid $blue;
+                        font-size: 18px;
+                        margin-top: 5px;
+
+                        &:hover{
+                            background-color: $orange;
+                            border: 1px solid $orange;
+                            box-shadow: 0 0 10px $orange;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+}

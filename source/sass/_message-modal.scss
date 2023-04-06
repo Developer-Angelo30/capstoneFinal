@@ -1,0 +1,56 @@
+#success-modal{
+    position:fixed;
+    background-color: rgba(0,0,0,0.3);
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+
+    .message-box{
+        height: 220px;
+        width: 400px;
+        background-color: white;
+        border-radius: 20px;
+        position: relative;
+
+        .white{
+            text-align: center;
+            border-radius: 20px;
+            position: relative;
+            padding-top: 20px;
+            i{
+                font-size: 50px;
+                color: green;
+            }
+        }
+
+        .blue{
+            background-color: $blue;
+            position: absolute;
+            bottom: 0px;
+            height: 80px;
+            width: 100%;
+            border-radius: 0 0 20px 20px;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+
+            button{
+                background-color: #29396D;
+                width: 100px;
+                height: 40px;
+                color: white;
+                font-weight: 500px;
+                font-size: 18px;
+                border-radius: 10px;
+                cursor: pointer;
+                outline: none;
+                border: none;
+            }
+        }
+    }
+
+}

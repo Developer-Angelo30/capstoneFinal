@@ -1,0 +1,557 @@
+@import "./global";
+@import "./message-modal";
+
+#superadmin-dashboard{
+    background-color: #f2f2f2;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+
+    nav{
+        cursor: pointer;
+        position: fixed;
+        width: 300px;
+        height: 80px;
+        right: 30px;
+        top: 30px;
+        z-index: 1;
+        background-color: white;
+        box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+        border-radius: 20px;
+        
+
+        #navbar-open{
+            height: 80px;
+            display: grid;
+            grid-template-columns: 80px 1fr ;
+
+            span{
+                cursor: pointer;
+                width: 100%;
+                height: 100%;
+                position: relative;
+    
+                img{
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    height: 50px;
+                    width: 50px;
+                }
+    
+                .span-data{
+                    margin-top: 17px;
+                    display: grid;
+    
+                    h1{
+                        font-size: 16px;
+                    }
+                    small{
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+
+        .nav-content{
+            display: none;
+            background-color: white;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+            border-radius: 20px;
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            top: 90px;
+
+            .user-data{
+                background-color: white;
+                position: relative;
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+
+                #close-navbar{
+                    z-index: 1;
+                    font-size: 20px;
+                    color: white;
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    cursor: pointer;
+                    &:hover{
+                        color: black;
+                    }
+                }
+
+                .gradient{
+                    background: linear-gradient(20deg , #FC8353 , #FCB053) ;
+                    position: relative;
+                    height: 70%;
+                    border-radius: 20px 20px 0 0;
+
+                    .center{
+                        position: absolute;
+                        top: 40px;
+                        width: 100%;
+                        center{
+                            img{
+                                height: 100px;
+                                width: 100px;
+                                border-radius: 50%;
+                                background-color: white;
+                                padding: 5px;
+                            }
+
+                            h1{
+                                color: white;;
+                            }
+                        }
+                        .center-data{
+                            margin-top: 5px;
+                            background-color: white;
+                            padding: 5px 20px;
+                            border-radius: 20px;
+                            width: 250px;
+                            box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+                            margin-left: 25px;
+                            text-align: center;
+                        }
+                    }
+
+                }
+            }
+
+        }
+
+    }
+
+
+    .sidebar{
+        background-color: $blue;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-rows: 100px 1fr 100px;
+
+        .image-group{
+            padding: 10px;
+            display: flex;
+            margin-top: 10px;
+            
+            h1{
+                margin-top: 25px;
+                padding-left: 20px;
+                color: white;
+            }
+
+        }
+
+
+        .ul-group{
+            margin-top: 20px;
+            ul{
+                list-style-type: none;
+                display: grid;
+                li{
+                    cursor: pointer;
+                    color: white;
+                    line-height: 60px;
+
+                    i{
+                        padding-left: 20px;
+                        font-size: 18px;
+                    }
+
+                    b{
+                        padding-left: 30px;
+                    }
+                }
+            }
+        }
+
+        a{
+            color: white;
+
+            i{
+                padding-left: 20px;
+                font-size: 18px;
+            }
+
+            b{
+                padding-left: 30px;
+            }
+        }
+
+    }
+
+    .content{
+        position: relative;
+        #configuration{
+            padding: 120px 20px 20px 20px;
+            height: 100vh;
+            width: 100%;
+
+            .collection-span{
+                height: 50px;
+                position: relative;
+                
+                span{
+                    padding: 5px 10px;
+                    background-color: $blue;
+                    color: white;
+                    position: relative;
+                    bottom: -21px;
+                    border-radius: 10px 10px 0 0;
+                    cursor: pointer;
+                    &:hover{
+                        color: $yellow;
+                    }
+                }
+            }
+            
+            .configuration-content{
+                height: 850px;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+                border-radius: 0 20px 20px 20px;
+
+                .scroll{
+                    height: 100%;
+                    padding: 20px;
+                }
+
+                .account-content{
+
+                    position: relative;
+                    
+                    h1{
+                        font-size: 18px;
+                    }
+
+                    .button-up-right{
+                        display: grid;
+                        justify-content: end;
+
+                        .modal-add-account-btn{
+                            width: 300px;
+                            height: 40px;
+                            font-size: 18px;
+                            font-weight: 500px;
+                            border-radius: 10px;
+                            border: none;
+                            outline: none;
+                            background-color: $blue;
+                            color: white;
+                            margin-top: 20px;
+                            cursor: pointer;
+    
+                            &:hover{
+                                box-shadow: 0 0 5px $blue;
+                            }
+                        }
+                    }
+
+                    .account-holder{
+                        margin-top: 20px;
+                        height: 750px;
+
+                        .header-account{
+                            border-radius: 20px 20px 0 0;
+                            height: 50px;
+                            width: 100%;
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr 50px;
+                            background-color:$blue;
+                            padding: 0 20px;
+                            padding-top: 15px;
+                            border-bottom: 2px solid #e2e2e2;
+                            color: white;
+
+                        }
+
+                        .fetch-account{
+                            margin-top: 5px;
+                            overflow-y: auto;
+                            height: 630px;
+
+                            .account-data{
+                                margin-bottom: 10px;
+                                background-color: white;
+                                border: 2px solid #e2e2e2;
+                                width: 100%;
+                                height: 50px;
+                                display: grid;
+                                padding: 0 10px;
+                                padding-top: 10px;
+                                grid-template-columns: 1fr 1fr 1fr 50px;
+                                
+                                i{
+                                    color: red;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                    
+                    .modal-add-account{
+                        visibility:hidden;
+                        position: fixed;
+                        background-color: rgba(0,0,0,0.3);
+                        width: 100vw;
+                        height: 100vh;
+                        top: 0;
+                        left: 0;
+                        display: grid;
+                        justify-content: center;
+                        align-items: center;
+
+                        form{
+                            position: relative;
+                            padding: 20px;
+                            background-color: white;
+
+                            .modal-add-account-close{
+                                font-size: 18px;
+                                color: black;
+                                cursor: pointer;
+                                float: right;
+                                &:hover{
+                                    color: #e2e2e2;
+                                }
+                            }
+    
+                            .fetch-row{
+                                height: 400px;
+                                overflow-y: auto;
+                                .row{
+                                    display: grid;
+                                    grid-template-columns:  1fr 1fr 1fr 1fr 1fr;
+                                    gap: 20px;
+                                    border-bottom: 2px solid #e2e2e2;
+                                    padding-bottom: 10px;
+                                    margin-bottom: 10px;
+                                    .form-group{
+                                        position: relative;
+                                        display: grid;
+                                        margin-top: 20px;
+                                        
+                                        input, select{
+                                            height: 40px;
+                                            padding: 0 10px;
+            
+                                            &:focus{
+                                                outline: none;
+                                                border: 1px solid $blue;
+                                                box-shadow: 0 0 5px $blue;
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .end-form{
+                                .form-submit-btn{
+                                    margin-top: 20px;
+                                    float: right;
+                                    right: 0px;
+                                    width: 200px;
+                                    font-size: 18px;
+                                    background-color: $blue;
+                                    color: white;
+                                    border-radius: 10px;
+                                    outline: none;
+                                    border: none;
+                                    height: 40px;
+                                    margin-left: 10px;
+                                    &:hover{
+                                        box-shadow: 0 0 5px $blue;
+                                    }
+                                }
+
+                                .form-add-row-btn{
+                                    margin-top: 20px;
+                                    float: right;
+                                    right: 0px;
+                                    width: 200px;
+                                    font-size: 18px;
+                                    background-color: $orange;
+                                    color: white;
+                                    border-radius: 10px;
+                                    outline: none;
+                                    border: none;
+                                    height: 40px;
+                                    &:hover{
+                                        box-shadow: 0 0 5px $blue;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+
+                .professor-content{
+                    position: relative;
+                    
+                    h1{
+                        font-size: 18px;
+                    }
+
+                    .button-up-right{
+                        display: grid;
+                        justify-content: end;
+
+                        .modal-add-professor-btn{
+                            width: 300px;
+                            height: 40px;
+                            font-size: 18px;
+                            font-weight: 500px;
+                            border-radius: 10px;
+                            border: none;
+                            outline: none;
+                            background-color: $blue;
+                            color: white;
+                            margin-top: 20px;
+                            cursor: pointer;
+    
+                            &:hover{
+                                box-shadow: 0 0 5px $blue;
+                            }
+                        }
+                    }
+
+                    .professor-holder{
+                        margin-top: 20px;
+                        height: 750px;
+
+                        .header-professor{
+                            border-radius: 20px 20px 0 0;
+                            height: 50px;
+                            width: 100%;
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr 50px;
+                            background-color:$blue;
+                            padding: 0 20px;
+                            padding-top: 15px;
+                            border-bottom: 2px solid #e2e2e2;
+                            color: white;
+
+                        }
+
+                        .fetch-professor{
+                            margin-top: 5px;
+                            overflow-y: auto;
+                            height: 630px;
+
+                            .professor-data{
+                                margin-bottom: 10px;
+                                background-color: white;
+                                border: 2px solid #e2e2e2;
+                                width: 100%;
+                                height: 50px;
+                                display: grid;
+                                padding: 0 10px;
+                                padding-top: 10px;
+                                grid-template-columns: 1fr 1fr 1fr 50px;
+                                
+                                i{
+                                    color: red;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                    
+                    .modal-add-professor{
+                        visibility:hidden;
+                        position: fixed;
+                        background-color: rgba(0,0,0,0.3);
+                        width: 100vw;
+                        height: 100vh;
+                        top: 0;
+                        left: 0;
+                        display: grid;
+                        justify-content: center;
+                        align-items: center;
+
+                        form{
+                            width: 400px;
+                            padding: 20px;
+                            background-color: white;
+
+                            .modal-add-professor-close{
+                                font-size: 18px;
+                                color: black;
+                                cursor: pointer;
+                                float: right;
+                                &:hover{
+                                    color: #e2e2e2;
+                                }
+                            }
+    
+                            .form-group{
+                                position: relative;
+                                display: grid;
+                                margin-top: 20px;
+                                
+                                input, select{
+                                    height: 40px;
+                                    padding: 0 10px;
+    
+                                    &:focus{
+                                        outline: none;
+                                        border: 1px solid $blue;
+                                        box-shadow: 0 0 5px $blue;
+                                        
+                                    }
+                                }
+    
+                                button{
+                                    margin-top: 10px;
+                                    height: 40px;
+                                    background-color: $blue;
+                                    color: white;
+                                    border-radius: 10px;
+                                    font-size: 18px;
+                                    border: 1px solid $blue;
+                                    cursor: pointer;
+                                    width: 100%;
+                                    
+                                    &:hover{
+                                        box-shadow: 0 0 5px $blue;
+                                    }
+                                }
+                                
+                            }
+                        }
+
+                    }
+                }
+
+                .section-content{
+                    h1{
+                        font-size: 18px;
+                    }
+                }
+
+                .classroom-content{
+                    h1{
+                        font-size: 18px;
+                    }
+                }
+
+                .department-content{
+                    h1{
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+
+}
