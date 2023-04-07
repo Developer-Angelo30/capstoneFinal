@@ -217,25 +217,65 @@
                 background-color: white;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.3);
                 border-radius: 0 20px 20px 20px;
+                
 
                 .scroll{
                     height: 100%;
                     padding: 20px;
                 }
 
-                .account-content{
+                @mixin configure_Table_Header{
+                    border-radius: 20px 20px 0 0;
+                    height: 50px;
+                    width: 100%;
+                    display: grid;
+                    // grid-template-columns: 1fr 1fr 1fr 50px; dito sila di same
+                    background-color:$blue;
+                    padding: 0 20px;
+                    padding-top: 15px;
+                    border-bottom: 2px solid #e2e2e2;
+                    color: white;
+                }
 
+                @mixin configure_Table_Data{
+                    margin-bottom: 10px;
+                    background-color: white;
+                    border: 2px solid #e2e2e2;
+                    width: 100%;
+                    height: 50px;
+                    display: grid;
+                    padding: 0 10px;
+                    padding-top: 10px;
+                    // grid-template-columns: 1fr 1fr 1fr 50px; dito sila di same
+                }
+
+                @mixin group-button-end-form{
+                    margin-top: 20px;
+                    float: right;
+                    right: 0px;
+                    width: 200px;
+                    font-size: 18px;
+                    color: white;
+                    border-radius: 10px;
+                    outline: none;
+                    border: none;
+                    height: 40px;
+                    margin-left: 10px;
+                }
+
+                .content-configure-design{
                     position: relative;
-                    
+
+
                     h1{
                         font-size: 18px;
                     }
 
-                    .button-up-right{
+                    .button-up-right {
                         display: grid;
                         justify-content: end;
 
-                        .modal-add-account-btn{
+                        button{
                             width: 300px;
                             height: 40px;
                             font-size: 18px;
@@ -247,45 +287,50 @@
                             color: white;
                             margin-top: 20px;
                             cursor: pointer;
-    
+
                             &:hover{
                                 box-shadow: 0 0 5px $blue;
                             }
                         }
+                        
                     }
 
-                    .account-holder{
+                    .custom-table{
                         margin-top: 20px;
                         height: 750px;
 
-                        .header-account{
-                            border-radius: 20px 20px 0 0;
-                            height: 50px;
-                            width: 100%;
-                            display: grid;
+                        // HEADER DAHIL DI SILA SAME SA GRID TAPLE KAYA NEED GAEIN TOH
+
+                        .table-header-account , .table-header-professor{
+                            @include configure_Table_Header();
                             grid-template-columns: 1fr 1fr 1fr 50px;
-                            background-color:$blue;
-                            padding: 0 20px;
-                            padding-top: 15px;
-                            border-bottom: 2px solid #e2e2e2;
-                            color: white;
+                        }
+
+                        .table-header-subject{
+                            @include configure_Table_Header();
+                            grid-template-columns: 100px 1fr 1fr 1fr 50px;
+                        }
+
+                        .table-header-classroom , .table-header-section{
+                            @include configure_Table_Header();
+                            grid-template-columns: 1fr 1fr 50px;
 
                         }
 
-                        .fetch-account{
-                            margin-top: 5px;
+                        .table-header-department{
+                            @include configure_Table_Header();
+                            grid-template-columns:200px 1fr 50px;
+                        }
+
+                        // ------------  END HEADER -----------------------
+
+                        .table-body{
                             overflow-y: auto;
                             height: 630px;
 
-                            .account-data{
-                                margin-bottom: 10px;
-                                background-color: white;
-                                border: 2px solid #e2e2e2;
-                                width: 100%;
-                                height: 50px;
-                                display: grid;
-                                padding: 0 10px;
-                                padding-top: 10px;
+                             // BODY data DI SILA SAME SA GRID TAPLE KAYA NEED GAEIN TOH
+                            .table-data-account , .table-data-professor{
+                                @include configure_Table_Data();
                                 grid-template-columns: 1fr 1fr 1fr 50px;
                                 
                                 i{
@@ -293,10 +338,43 @@
                                     cursor: pointer;
                                 }
                             }
-                        }
+
+                            .table-data-subject{
+                                @include configure_Table_Data();
+                                grid-template-columns: 100px 1fr 1fr 1fr 50px;
+                                
+                                i{
+                                    color: red;
+                                    cursor: pointer;
+                                }
+                            }
+
+                            .table-data-classroom , .table-data-section{
+                                @include configure_Table_Data();
+                                grid-template-columns: 1fr 1fr 50px;
+                                
+                                i{
+                                    color: red;
+                                    cursor: pointer;
+                                }
+                            }
+
+                            .table-data-department{
+                                @include configure_Table_Data();
+                                grid-template-columns: 200px 1fr 50px;
+                                
+                                i{
+                                    color: red;
+                                    cursor: pointer;
+                                }
+                            }
+
+                            // ------------  END HEADER -----------------------
+
+                         }  
                     }
-                    
-                    .modal-add-account{
+                    .custom-modal{
+                        z-index: 100;
                         visibility:hidden;
                         position: fixed;
                         background-color: rgba(0,0,0,0.3);
@@ -313,7 +391,7 @@
                             padding: 20px;
                             background-color: white;
 
-                            .modal-add-account-close{
+                            .close-modal{
                                 font-size: 18px;
                                 color: black;
                                 cursor: pointer;
@@ -322,8 +400,8 @@
                                     color: #e2e2e2;
                                 }
                             }
-    
-                            .fetch-row{
+
+                            .fetch-form-input-account, .fetch-form-input-professor , .fetch-form-input-subject{
                                 height: 400px;
                                 overflow-y: auto;
                                 .row{
@@ -353,153 +431,12 @@
                                 }
                             }
 
-                            .end-form{
-                                .form-submit-btn{
-                                    margin-top: 20px;
-                                    float: right;
-                                    right: 0px;
-                                    width: 200px;
-                                    font-size: 18px;
-                                    background-color: $blue;
-                                    color: white;
-                                    border-radius: 10px;
-                                    outline: none;
-                                    border: none;
-                                    height: 40px;
-                                    margin-left: 10px;
-                                    &:hover{
-                                        box-shadow: 0 0 5px $blue;
-                                    }
-                                }
-
-                                .form-add-row-btn{
-                                    margin-top: 20px;
-                                    float: right;
-                                    right: 0px;
-                                    width: 200px;
-                                    font-size: 18px;
-                                    background-color: $orange;
-                                    color: white;
-                                    border-radius: 10px;
-                                    outline: none;
-                                    border: none;
-                                    height: 40px;
-                                    &:hover{
-                                        box-shadow: 0 0 5px $blue;
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-
-                }
-
-                .professor-content{
-                    position: relative;
-                    
-                    h1{
-                        font-size: 18px;
-                    }
-
-                    .button-up-right{
-                        display: grid;
-                        justify-content: end;
-
-                        .modal-add-professor-btn{
-                            width: 300px;
-                            height: 40px;
-                            font-size: 18px;
-                            font-weight: 500px;
-                            border-radius: 10px;
-                            border: none;
-                            outline: none;
-                            background-color: $blue;
-                            color: white;
-                            margin-top: 20px;
-                            cursor: pointer;
-    
-                            &:hover{
-                                box-shadow: 0 0 5px $blue;
-                            }
-                        }
-                    }
-
-                    .professor-holder{
-                        margin-top: 20px;
-                        height: 750px;
-
-                        .header-professor{
-                            border-radius: 20px 20px 0 0;
-                            height: 50px;
-                            width: 100%;
-                            display: grid;
-                            grid-template-columns: 1fr 1fr 1fr 50px;
-                            background-color:$blue;
-                            padding: 0 20px;
-                            padding-top: 15px;
-                            border-bottom: 2px solid #e2e2e2;
-                            color: white;
-
-                        }
-
-                        .fetch-professor{
-                            margin-top: 5px;
-                            overflow-y: auto;
-                            height: 630px;
-
-                            .professor-data{
-                                margin-bottom: 10px;
-                                background-color: white;
-                                border: 2px solid #e2e2e2;
-                                width: 100%;
-                                height: 50px;
-                                display: grid;
-                                padding: 0 10px;
-                                padding-top: 10px;
-                                grid-template-columns: 1fr 1fr 1fr 50px;
-                                
-                                i{
-                                    color: red;
-                                    cursor: pointer;
-                                }
-                            }
-                        }
-                    }
-                    
-                    .modal-add-professor{
-                        visibility:hidden;
-                        position: fixed;
-                        background-color: rgba(0,0,0,0.3);
-                        width: 100vw;
-                        height: 100vh;
-                        top: 0;
-                        left: 0;
-                        display: grid;
-                        justify-content: center;
-                        align-items: center;
-
-                        form{
-                            position: relative;
-                            padding: 20px;
-                            background-color: white;
-
-                            .modal-add-professor-close{
-                                font-size: 18px;
-                                color: black;
-                                cursor: pointer;
-                                float: right;
-                                &:hover{
-                                    color: #e2e2e2;
-                                }
-                            }
-    
-                            .fetch-row{
+                            .fetch-form-input-classroom , .fetch-form-input-section , .fetch-form-input-department {
                                 height: 400px;
                                 overflow-y: auto;
                                 .row{
                                     display: grid;
-                                    grid-template-columns:  1fr 1fr 1fr 1fr;
+                                    grid-template-columns: 1fr 1fr;
                                     gap: 20px;
                                     border-bottom: 2px solid #e2e2e2;
                                     padding-bottom: 10px;
@@ -526,64 +463,26 @@
 
                             .end-form{
                                 .form-submit-btn{
-                                    margin-top: 20px;
-                                    float: right;
-                                    right: 0px;
-                                    width: 200px;
-                                    font-size: 18px;
+                                    @include group-button-end-form();
                                     background-color: $blue;
-                                    color: white;
-                                    border-radius: 10px;
-                                    outline: none;
-                                    border: none;
-                                    height: 40px;
-                                    margin-left: 10px;
                                     &:hover{
                                         box-shadow: 0 0 5px $blue;
                                     }
                                 }
 
                                 .form-add-row-btn{
-                                    margin-top: 20px;
-                                    float: right;
-                                    right: 0px;
-                                    width: 200px;
-                                    font-size: 18px;
+                                    @include group-button-end-form();
                                     background-color: $orange;
-                                    color: white;
-                                    border-radius: 10px;
-                                    outline: none;
-                                    border: none;
-                                    height: 40px;
                                     &:hover{
                                         box-shadow: 0 0 5px $blue;
                                     }
                                 }
                             }
+
                         }
-
-                    }
-                }
-
-                .section-content{
-                    h1{
-                        font-size: 18px;
-                    }
-                }
-
-                .classroom-content{
-                    h1{
-                        font-size: 18px;
-                    }
-                }
-
-                .department-content{
-                    h1{
-                        font-size: 18px;
                     }
                 }
             }
         }
     }
-
 }

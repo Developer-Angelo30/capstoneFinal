@@ -108,6 +108,20 @@ $(document).ready(()=>{
         }
         configProfessorShow()
 
+        const configSubjectShow = () =>{
+            $(document).on('click', '.subject-btn', ()=>{
+                $.ajax({
+                    type: "POST",
+                    url: "../../apps/superAdmin/partials/configuration-partial/subject.php",
+                    success: function (response) {
+                        $('.configuration-content').html('')
+                        $('.configuration-content').html(response)
+                    }
+                });
+            })
+        }
+        configSubjectShow()
+
         const configSectionShow = () =>{
             $(document).on('click', '.section-btn', ()=>{
                 $.ajax({
