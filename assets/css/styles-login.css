@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+#login-section {
+  background-image: url("../../assets/images/bg-photo.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}
+#login-section .center-box {
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 600px;
+  width: 1000px;
+  border-radius: 20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+#login-section .center-box .left {
+  position: relative;
+}
+#login-section .center-box .left .yellow {
+  position: absolute;
+  bottom: 0px;
+  border-radius: 20px 0px 200px 20px;
+  height: 600px;
+  width: 100%;
+  background-color: #F5D04C;
+}
+#login-section .center-box .left .orange {
+  position: absolute;
+  bottom: 0px;
+  border-radius: 20px 0px 200px 20px;
+  height: 550px;
+  width: 100%;
+  background-color: #FCB053;
+  padding: 20px;
+}
+#login-section .center-box .left .orange:hover {
+  transition: 1s;
+  bottom: 70px;
+  border-radius: 20px 20px 200px 20px;
+}
+#login-section .center-box .left .orange h5 {
+  color: white;
+  font-size: 16px;
+}
+#login-section .center-box .left .orange h5 span {
+  background-color: #29396D;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 10px 2px;
+  font-size: 18px;
+}
+#login-section .center-box .left .orange img {
+  position: relative;
+  width: 100%;
+}
+#login-section .center-box .left .blue {
+  position: absolute;
+  bottom: 0px;
+  border-radius: 20px 0px 200px 20px;
+  height: 500px;
+  width: 100%;
+  background-color: #5176E4;
+}
+#login-section .center-box .right {
+  position: relative;
+}
+#login-section .center-box .right .yellow {
+  position: absolute;
+  bottom: 0px;
+  border-radius: 0px 20px 20px 0px;
+  width: 100%;
+  height: 600px;
+  background-color: #F5D04C;
+}
+#login-section .center-box .right .orange {
+  position: absolute;
+  bottom: 0px;
+  border-radius: 0px 20px 20px 0px;
+  width: 100%;
+  height: 550px;
+  background-color: #FCB053;
+}
+#login-section .center-box .right .white {
+  position: absolute;
+  bottom: 0px;
+  border-radius: 0px 20px 20px 0px;
+  width: 100%;
+  height: 600px;
+  background-color: white;
+  border-radius: 110px 20px 20px 0px;
+  position: relative;
+}
+#login-section .center-box .right .white form {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+}
+#login-section .center-box .right .white form img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+#login-section .center-box .right .white form .form-group {
+  margin-top: 20px;
+  background-color: #5176E4;
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  width: 100%;
+  position: relative;
+}
+#login-section .center-box .right .white form .form-group input {
+  height: 40px;
+  width: 100%;
+  padding: 0 10px;
+  border: 1px solid #5176E4;
+  outline: none;
+  background-color: #f2f2f2;
+}
+#login-section .center-box .right .white form .form-group i {
+  background-color: #5176E4;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+}
+#login-section .center-box .right .white form small {
+  color: red;
+  text-align: left;
+  display: none;
+}
+#login-section .center-box .right .white form button {
+  color: white;
+  background-color: #5176E4;
+  cursor: pointer;
+  height: 40px;
+  width: 100%;
+  border-radius: 20px;
+  outline: none;
+  border: 1px solid #5176E4;
+  font-size: 18px;
+  margin-top: 5px;
+}
+#login-section .center-box .right .white form button:hover {
+  background-color: #FCB053;
+  border: 1px solid #FCB053;
+  box-shadow: 0 0 10px #FCB053;
+}/*# sourceMappingURL=styles-login.css.map */

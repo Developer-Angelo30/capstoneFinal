@@ -17,93 +17,10 @@
                 <strong>CICT</strong>
                 <strong><i class="fa fa-trash" ></i></strong>
             </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span><span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="account-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
         </div>
     </div>
     <div class="modal-add-account">
-        <form id="configAddProf_Form">
+        <form id="configAddPAccount_Form">
             <i class="modal-add-account-close fa fa-close" ></i>
             <div class="fetch-row" id="add-account-row-fetch">
                 <div class="row">
@@ -118,14 +35,7 @@
                     </div>
                     <div class="form-group">
                         <select name="add-department[]" id="add-department">
-                        <option value="" selected >-- SELECT DEPARTMENT --</option>    
                         <option value="1">CICT</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select name="add-role[]" id="add-role">
-                            <option value="" selected >-- ROLE --</option>    
-                            <option value="1">Admin</option>
                         </select>
                     </div>
                 </div>
@@ -160,12 +70,6 @@
                             <option value='1'>CICT</option>\
                         </select>\
                     </div>\
-                    <div class='form-group'>\
-                        <select name='add-role[]' id='add-role'>\
-                            <option value=' selected >-- ROLE --</option> \
-                            <option value='1'>Admin</option>\
-                        </select>\
-                    </div>\
                 </div>\
                    \ "
                 )
@@ -183,7 +87,7 @@
         const accountModalAddHide = () =>{
             $(document).on('click', '.modal-add-account-close' ,()=>{
                 $('.modal-add-account').css({"visibility":'hidden'})
-                $('#configAddProf_Form')[0].reset()
+                $('#configAddPAccount_Form')[0].reset()
                 $('#add-account-row-fetch').html('')
                 $('#add-account-row-fetch').append(
                     "\
@@ -201,12 +105,6 @@
                         <select name='add-department[]' id='add-department'>\
                             <option value=' selected >-- SELECT DEPARTMENT --</option> \
                             <option value='1'>CICT</option>\
-                        </select>\
-                    </div>\
-                    <div class='form-group'>\
-                        <select name='add-role[]' id='add-role'>\
-                            <option value=' selected >-- ROLE --</option> \
-                            <option value='1'>Admin</option>\
                         </select>\
                     </div>\
                 </div>\

@@ -12,7 +12,7 @@ if(!isset($_SESSION['email']) && !isset($_SESSION['role'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../assets/css/dashboard-superadmin.css">
+    <link rel="stylesheet" href="../../assets/css/styles-dashboard.css">
     <link rel="stylesheet" href="../../assets/fontawesome/css/all.css">
     <title>Schedlr</title>
 </head>
@@ -81,7 +81,7 @@ if(!isset($_SESSION['email']) && !isset($_SESSION['role'])){
         </div>
     </section>
     <script src="../../assets/js/jquery-3.6.4.js"></script>
-    <script src="../../assets/js/custom.js"></script>
+    <script src="../../assets/js/customs.js"></script>
     <script>
         $(document).ready(()=>{
 

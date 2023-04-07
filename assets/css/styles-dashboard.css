@@ -341,7 +341,7 @@
 }
 #superadmin-dashboard .content #configuration .configuration-content .account-content .modal-add-account form .fetch-row .row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
   border-bottom: 2px solid #e2e2e2;
   padding-bottom: 10px;
@@ -469,7 +469,7 @@
   align-items: center;
 }
 #superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form {
-  width: 400px;
+  position: relative;
   padding: 20px;
   background-color: white;
 }
@@ -482,32 +482,63 @@
 #superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .modal-add-professor-close:hover {
   color: #e2e2e2;
 }
-#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .form-group {
+#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .fetch-row {
+  height: 400px;
+  overflow-y: auto;
+}
+#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .fetch-row .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  border-bottom: 2px solid #e2e2e2;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .fetch-row .row .form-group {
   position: relative;
   display: grid;
   margin-top: 20px;
 }
-#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .form-group input, #superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .form-group select {
+#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .fetch-row .row .form-group input, #superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .fetch-row .row .form-group select {
   height: 40px;
   padding: 0 10px;
 }
-#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .form-group input:focus, #superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .form-group select:focus {
+#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .fetch-row .row .form-group input:focus, #superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .fetch-row .row .form-group select:focus {
   outline: none;
   border: 1px solid #5176E4;
   box-shadow: 0 0 5px #5176E4;
 }
-#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .form-group button {
-  margin-top: 10px;
-  height: 40px;
+#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .end-form .form-submit-btn {
+  margin-top: 20px;
+  float: right;
+  right: 0px;
+  width: 200px;
+  font-size: 18px;
   background-color: #5176E4;
   color: white;
   border-radius: 10px;
-  font-size: 18px;
-  border: 1px solid #5176E4;
-  cursor: pointer;
-  width: 100%;
+  outline: none;
+  border: none;
+  height: 40px;
+  margin-left: 10px;
 }
-#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .form-group button:hover {
+#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .end-form .form-submit-btn:hover {
+  box-shadow: 0 0 5px #5176E4;
+}
+#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .end-form .form-add-row-btn {
+  margin-top: 20px;
+  float: right;
+  right: 0px;
+  width: 200px;
+  font-size: 18px;
+  background-color: #FCB053;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  height: 40px;
+}
+#superadmin-dashboard .content #configuration .configuration-content .professor-content .modal-add-professor form .end-form .form-add-row-btn:hover {
   box-shadow: 0 0 5px #5176E4;
 }
 #superadmin-dashboard .content #configuration .configuration-content .section-content h1 {
@@ -518,4 +549,4 @@
 }
 #superadmin-dashboard .content #configuration .configuration-content .department-content h1 {
   font-size: 18px;
-}/*# sourceMappingURL=dashboard-superadmin.css.map */
+}/*# sourceMappingURL=styles-dashboard.css.map */

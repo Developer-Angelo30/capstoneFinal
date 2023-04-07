@@ -5,99 +5,16 @@
     </span>
     <div class="professor-holder">
         <span class="header-professor" >
-            <strong>Email</strong>
             <strong>Fullname</strong>
-            <strong>Department</strong>
+            <strong>Rank</strong>
+            <strong>Designation</strong>
             <strong>Action</strong>
         </span>
         <div class="fetch-professor">
             <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
                 <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span><span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
-            <span class="professor-data" >
-                <strong>angeloreyes90@gmail.com</strong>
-                <strong>Angelo Reyes</strong>
-                <strong>CICT</strong>
+                <strong>Associative Professor</strong>
+                <strong>w/o Designated</strong>
                 <strong><i class="fa fa-trash" ></i></strong>
             </span>
         </div>
@@ -105,33 +22,112 @@
     <div class="modal-add-professor">
         <form id="configAddProf_Form">
             <i class="modal-add-professor-close fa fa-close" ></i>
-            <div class="form-group">
-                <label for="add-email"></label>
-                <input type="text" id="add-email" name="add-email" placeholder="Email Address" >
+            <div class="fetch-row" id="add-professor-row-fetch">
+                <div class="row">
+                    <div class="form-group">
+                        <input type="text" id="add-fname" name="add-fname[]" placeholder="First Name" >
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="add-lname" name="add-lname[]" placeholder="Last Name" >
+                    </div>
+                    <div class="form-group">
+                        <select name="add-rank[]" id="add-rank">
+                        <option value="1" >Instructor</option>    
+                        <option value="2">Assitant Professor</option>
+                        <option value="3">Associative Professor</option>
+                        <option value="4">Professor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="add-designated[]" id="add-designated">
+                            <option value='w/o Designated' >w/o Designated</option>\
+                            <option value='Designated' >Designated</option>\
+                        </select>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="add-fname">First Name</label>
-                <input type="text" id="add-fname" name="add-fname" placeholder="First Name" >
-            </div>
-            <div class="form-group">
-                <label for="add-lname">Last Name</label>
-                <input type="text" id="add-lname" name="add-lname" placeholder="Last Name" >
-            </div>
-            <div class="form-group">
-                <label for="add-department">Department</label>
-                <select name="add-department" id="add-department">
-                    <option value="1">CICT</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="add-role">Role</label>
-                <select name="add-role" id="add-role">
-                    <option value="1">Admin</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <button><i class="fa fa-spinner fa-spin" ></i>Submit</button>
+            <div class="end-form">
+                <button type="submit" class="form-submit-btn" ><i class="fa fa-spinner fa-spin " ></i>Submit</button>
+                <button type="button" class="form-add-row-btn" ><i class="fa fa-th " ></i> Add row</button>
             </div>
         </form>
     </div>
 </div>
+<script>
+    $(document).ready( ()=>{
+
+        const configProfessorAddRow = () =>{
+            $(document).on('click', '.form-add-row-btn' , ()=>{
+                $('#add-professor-row-fetch').append(
+                    "\
+                    <div class='row'>\
+                        <div class='form-group'>\
+                            <input type='text' id='add-fname' name='add-fname[]' placeholder='First Name' >\
+                        </div>\
+                        <div class='form-group'>\
+                            <input type='text' id='add-lname' name='add-lname[]' placeholder='Last Name' >\
+                        </div>\
+                        <div class='form-group' >\
+                            <select  name='add-rank[]' id='add-rank' >\
+                                <option value='1' >Instructor</option>\
+                                <option value='2' >Assitant Professor</option>\
+                                <option value='3' >Associative Professor</option>\
+                                <option value='4' >Professor</option>\
+                            </select>\
+                        </div>\
+                        <div class='form-group' >\
+                            <select  name='add-designated[]' id='add-designated' >\
+                                <option value='w/o Designated' >w/o Designated</option>\
+                                <option value='Designated' >Designated</option>\
+                            </select>\
+                        </div>\
+                    </div>\
+                    "
+                )
+            })
+        }
+        configProfessorAddRow()
+
+        const acountModalAddShow = () =>{
+            $(document).on('click', '.modal-add-professor-btn' ,()=>{
+                $('.modal-add-professor').css({"visibility":'visible'})
+            })
+        }
+        acountModalAddShow()
+
+        const professorModalAddHide = () =>{
+            $(document).on('click', '.modal-add-professor-close' ,()=>{
+                $('.modal-add-professor').css({"visibility":'hidden'})
+                $('#configAddProf_Form')[0].reset()
+                $('#add-professor-row-fetch').html('')
+                $('#add-professor-row-fetch').append(
+                    "\
+                    <div class='row'>\
+                        <div class='form-group'>\
+                            <input type='text' id='add-fname' name='add-fname[]' placeholder='First Name' >\
+                        </div>\
+                        <div class='form-group'>\
+                            <input type='text' id='add-lname' name='add-lname[]' placeholder='Last Name' >\
+                        </div>\
+                        <div class='form-group' >\
+                            <select  name='add-rank[]' id='add-rank' >\
+                                <option value='1' >Instructor</option>\
+                                <option value='2' >Assitant Professor</option>\
+                                <option value='3' >Associative Professor</option>\
+                                <option value='4' >Professor</option>\
+                            </select>\
+                        </div>\
+                        <div class='form-group' >\
+                            <select  name='add-designated[]' id='add-designated' >\
+                                <option value='w/o Designated' >w/o Designated</option>\
+                                <option value='Designated' >Designated</option>\
+                            </select>\
+                        </div>\
+                    </div>\
+                    "
+                )
+            })
+        }
+        professorModalAddHide()
+    } )
+</script>
