@@ -1,6 +1,17 @@
 @import "./global";
 @import "./message-modal";
 
+
+
+::-webkit-scrollbar-thumb{
+    background-color: green;
+}
+
+::-webkit-scrollbar-track{
+    width: 10px;
+    background-color:red;
+}
+
 #superadmin-dashboard{
     background-color: #f2f2f2;
     height: 100vh;
@@ -188,6 +199,185 @@
 
     .content{
         position: relative;
+
+        #home{
+            padding: 120px 20px 20px 20px;
+            height: 100vh;
+            width: 100%;
+            overflow-y: auto;
+            position: relative;
+
+            h1{
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+
+            .row-up{
+                height: 150px;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 20px;
+                
+                .box{
+                    background-color: white;
+                    border-radius: 20px;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+                    display: grid;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+
+                    &:hover{
+                        background-color: $blue;
+                        color: white;
+                    }
+
+                    h1{
+                        font-size: 50px;
+                    }
+
+                    strong{
+                        font-size: 20px;
+                        text-transform: uppercase;
+                    }
+                    
+                }
+            }
+
+            .table-schedule-holder{
+                position: relative;
+                margin-top: 50px;
+                height: 700px;
+                display: grid;
+                grid-template-columns: 50px 1fr;
+
+                .collection-span{
+                    position: relative;
+                    display: grid;
+                    grid-template-rows: 100px 100px 100px 100px 100px;
+                    background-color: #B7ACFB;
+                    
+                    span{
+                        position: relative;
+                        top: 50px;
+                        right: 20px;
+                        -webkit-transform: rotate(-90deg);
+                        margin: 0 10px;
+                        width: 90px;
+                        height: 30px;
+                        border-radius: 10px 10px 0 0;
+                        text-align: center;
+                        color: white;
+                        cursor: pointer;
+                    }
+                }
+                
+                .collection-span :nth-child(1){
+                    background-color: #52F258;
+                }
+
+                .collection-span :nth-child(2){
+                    background-color: $yellow;
+                }
+
+                .collection-span :nth-child(3){
+                    background-color: $blue;
+                }
+
+                .collection-span :nth-child(4){
+                    background-color: red;
+                }
+
+                .collection-span :nth-child(5){
+                    background-color: gray;
+                }
+
+            }
+
+            .table-schedule-design-holder{ 
+                position: relative;
+
+                .table-schedule{
+                    position: absolute;
+                    top: -30px;
+                    width: 100%;
+                    height: 750px;
+
+                    select{
+                        margin-left: 20px;
+                        width: 100px;
+                        font-size: 19px;
+                        border: none;
+                        outline: none;
+                        background-color: white;
+                        font-weight: bolder;
+                    }
+                    
+
+                    .collection-span-clip{
+                        border-radius: 20px 20px 0 0;
+                        margin-top: 10px;
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                        background-color: $blue;
+                        
+                    
+                        span{
+                            position: relative;
+                            top: -15px;
+                            margin-left: 50px;
+                            height: 50px;
+                            width: 20px;
+                            border-radius: 5px;
+                            background-color: white;
+                            border-top: 1px solid black;
+                        }
+                    }
+
+                    .table-header{
+                        background: $blue;
+                        height: 50px;
+
+                        display: grid;
+                        text-align: center;
+                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                        font-weight: bolder;
+                        color: white;
+                        font-size: 18px;
+                    }
+
+                    .table-fetch-row{
+                        position: relative;
+                        background-color: white;
+                        height: 635px;
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+                        overflow-y: scroll;
+
+                        table{
+                            width: 100%;
+                            border-collapse: collapse;
+                            tr{
+                                padding-top: 10px;
+                                text-align: center;
+                                height: 50px;
+                                border-bottom: 2px solid #e2e2e2;
+
+                                th{
+                                    border: 1px solid #e2e2e2;
+                                    width: 14% ;
+                                }
+                            }
+                            tr:nth-child(11){
+                                background-color: $yellow;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+        }
+
         #configuration{
             padding: 120px 20px 20px 20px;
             height: 100vh;
@@ -401,7 +591,7 @@
                                 }
                             }
 
-                            .fetch-form-input-account, .fetch-form-input-professor , .fetch-form-input-subject{
+                            .fetch-form-input-account, .fetch-form-input-professor{
                                 height: 400px;
                                 overflow-y: auto;
                                 .row{
@@ -431,12 +621,48 @@
                                 }
                             }
 
+                            .fetch-form-input-subject{
+                                height: 400px;
+                                overflow-y: auto;
+                                .row{
+                                    display: grid;
+                                    grid-template-columns: 50px 1fr 1fr 1fr 1fr 1fr;
+                                    gap: 20px;
+                                    border-bottom: 2px solid #e2e2e2;
+                                    padding-bottom: 10px;
+                                    margin-bottom: 10px;
+                                    .form-group{
+                                        
+                                        h5{
+                                            margin-top: 10px;
+                                            font-weight: normal;
+                                        }
+                                        
+                                        position: relative;
+                                        display: grid;
+                                        margin-top: 20px;
+                                        
+                                        input, select{
+                                            height: 40px;
+                                            padding: 0 10px;
+            
+                                            &:focus{
+                                                outline: none;
+                                                border: 1px solid $blue;
+                                                box-shadow: 0 0 5px $blue;
+                                                
+                                            }
+                                        }
+                                    }  
+                                }
+                            }
+
                             .fetch-form-input-classroom , .fetch-form-input-section , .fetch-form-input-department {
                                 height: 400px;
                                 overflow-y: auto;
                                 .row{
                                     display: grid;
-                                    grid-template-columns: 1fr 1fr;
+                                    grid-template-columns: 50px 1fr 1fr;
                                     gap: 20px;
                                     border-bottom: 2px solid #e2e2e2;
                                     padding-bottom: 10px;
@@ -445,6 +671,11 @@
                                         position: relative;
                                         display: grid;
                                         margin-top: 20px;
+
+                                        h5{
+                                            margin-top: 10px;
+                                            font-weight: normal;
+                                        }
                                         
                                         input, select{
                                             height: 40px;

@@ -11,18 +11,18 @@ class Admin{
         if(!empty($email)){
             if(!empty($password)){
                 if(validation::Email($email)){
-                     $sql = "SELECT `adminEmail` , `adminPassword` , `roleID` FROM `admins` WHERE `adminEmail` = '$email' ";
+                     $sql = "SELECT `UserEmail` , `UserPassword` , `UserRole` FROM `users` WHERE `UserEmail` = '$email' ";
                      $result = mysqli_query(DB::DBConnection(), $sql);
                      if($result->num_rows > 0){
                         $row = $result->fetch_assoc();
-                        if(password_verify($password,$row['adminPassword'] )){
+                        if(password_verify($password,$row['UserPassword'] )){
                             
-                            $_SESSION['email'] = $email;
-                            $_SESSION['role'] = $row['roleID'];
+                            $_SESSION['UserEmail'] = $email;
+                            $_SESSION['role'] = $row['UserRole'];
 
                             DB::DBClose();
 
-                            return ($row['roleID'] == 1 )? json_encode(array('status'=>true , "message"=>"./superAdmin/dashboard.php")) :  json_encode(array('status'=>true , "message"=>"./admin/dashboard.php"));
+                            return ($row['UserRole'] == "SUPER ADMIN" )? json_encode(array('status'=>true , "message"=>"./superAdmin/dashboard.php")) :  json_encode(array('status'=>true , "message"=>"./admin/dashboard.php"));
                         }
                         else{
                             return json_encode(array("status"=>false , "error"=>"password" , "message"=>"Password not matched."));

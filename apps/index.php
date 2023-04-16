@@ -59,6 +59,7 @@ if(isset($_SESSION['email']) && isset($_SESSION['role'])){
         </div>
     </section>
     <script src="../assets/js/jquery-3.6.4.js"></script>
-    <script src="../assets/js/servers.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../assets/js/customs.js"></script>
 </body>
 </html>

@@ -17,6 +17,8 @@ if(!empty($action)){
         echo $view->logins($_POST['login-email'], $_POST['login-password'] );
     }
 }
-
+else{
+    die(array("status"=>false , "message"=>"There is a problem; please contact the developer."));
+}
 
 ?>

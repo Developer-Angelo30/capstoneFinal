@@ -11,8 +11,17 @@ class validation{
             return false;
         }
     }
+    
+    public static function Numeric($value){
+        $pattern = "/^[0-9]+$/";
+        return (preg_match($pattern, $value))?true:false;
+    }
+
+    public static function AlphaSpace($value){
+        $pattern = "/^[A-Za-z\s]+$/";
+        return (preg_match($pattern, $value))?true:false;
+    }
 
 }
-
 
 ?>

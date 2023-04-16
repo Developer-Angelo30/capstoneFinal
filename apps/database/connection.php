@@ -1,16 +1,25 @@
 <?php
 
+class DB {
 
-class DB{
+    private static $server = "localhost";
+    private static $username = "root";
+    private static $passowrd = "";
+    private static $dbname = "schedler_database";
+    
+    public static function DBConnection (){
 
-    private static $DBHost = "localhost";
-    private static $DBUser = "root";
-    private static $DBPass = "";
-    private static $DBname = 'schedlr';
+        $conn = mysqli_connect(self::$server , self::$username , self::$passowrd);
+        
+        $database = mysqli_select_db($conn, self::$dbname);
+        if($database){
+            return $conn;
+        }
+        else{
+            $createDB = "CREATE DATABASE  IF NOT EXISTS schedler_database";
+            $queryDB = mysqli_query($conn, $createDB);
+        }
 
-    public static function DBConnection(){
-        $con = mysqli_connect(self::$DBHost, self::$DBUser, self::$DBPass, self::$DBname);
-        return (!$con)? die("Connection Failed: " . mysqli_connect_error() ) : $con;
     }
 
     public static function DBClose(){
@@ -18,5 +27,6 @@ class DB{
     }
 
 }
+
 
 ?>

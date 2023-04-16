@@ -58,6 +58,15 @@
   border: none;
 }
 
+::-webkit-scrollbar-thumb {
+  background-color: green;
+}
+
+::-webkit-scrollbar-track {
+  width: 10px;
+  background-color: red;
+}
+
 #superadmin-dashboard {
   background-color: #f2f2f2;
   height: 100vh;
@@ -214,6 +223,153 @@
 }
 #superadmin-dashboard .content {
   position: relative;
+}
+#superadmin-dashboard .content #home {
+  padding: 120px 20px 20px 20px;
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  position: relative;
+}
+#superadmin-dashboard .content #home h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+#superadmin-dashboard .content #home .row-up {
+  height: 150px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+#superadmin-dashboard .content #home .row-up .box {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+#superadmin-dashboard .content #home .row-up .box:hover {
+  background-color: #5176E4;
+  color: white;
+}
+#superadmin-dashboard .content #home .row-up .box h1 {
+  font-size: 50px;
+}
+#superadmin-dashboard .content #home .row-up .box strong {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+#superadmin-dashboard .content #home .table-schedule-holder {
+  position: relative;
+  margin-top: 50px;
+  height: 700px;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+}
+#superadmin-dashboard .content #home .table-schedule-holder .collection-span {
+  position: relative;
+  display: grid;
+  grid-template-rows: 100px 100px 100px 100px 100px;
+  background-color: #B7ACFB;
+}
+#superadmin-dashboard .content #home .table-schedule-holder .collection-span span {
+  position: relative;
+  top: 50px;
+  right: 20px;
+  -webkit-transform: rotate(-90deg);
+  margin: 0 10px;
+  width: 90px;
+  height: 30px;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+#superadmin-dashboard .content #home .table-schedule-holder .collection-span :nth-child(1) {
+  background-color: #52F258;
+}
+#superadmin-dashboard .content #home .table-schedule-holder .collection-span :nth-child(2) {
+  background-color: #F5D04C;
+}
+#superadmin-dashboard .content #home .table-schedule-holder .collection-span :nth-child(3) {
+  background-color: #5176E4;
+}
+#superadmin-dashboard .content #home .table-schedule-holder .collection-span :nth-child(4) {
+  background-color: red;
+}
+#superadmin-dashboard .content #home .table-schedule-holder .collection-span :nth-child(5) {
+  background-color: gray;
+}
+#superadmin-dashboard .content #home .table-schedule-design-holder {
+  position: relative;
+}
+#superadmin-dashboard .content #home .table-schedule-design-holder .table-schedule {
+  position: absolute;
+  top: -30px;
+  width: 100%;
+  height: 750px;
+}
+#superadmin-dashboard .content #home .table-schedule-design-holder .table-schedule select {
+  margin-left: 20px;
+  width: 100px;
+  font-size: 19px;
+  border: none;
+  outline: none;
+  background-color: white;
+  font-weight: bolder;
+}
+#superadmin-dashboard .content #home .table-schedule-design-holder .table-schedule .collection-span-clip {
+  border-radius: 20px 20px 0 0;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: #5176E4;
+}
+#superadmin-dashboard .content #home .table-schedule-design-holder .table-schedule .collection-span-clip span {
+  position: relative;
+  top: -15px;
+  margin-left: 50px;
+  height: 50px;
+  width: 20px;
+  border-radius: 5px;
+  background-color: white;
+  border-top: 1px solid black;
+}
+#superadmin-dashboard .content #home .table-schedule-design-holder .table-schedule .table-header {
+  background: #5176E4;
+  height: 50px;
+  display: grid;
+  text-align: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  font-weight: bolder;
+  color: white;
+  font-size: 18px;
+}
+#superadmin-dashboard .content #home .table-schedule-design-holder .table-schedule .table-fetch-row {
+  position: relative;
+  background-color: white;
+  height: 635px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  overflow-y: scroll;
+}
+#superadmin-dashboard .content #home .table-schedule-design-holder .table-schedule .table-fetch-row table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#superadmin-dashboard .content #home .table-schedule-design-holder .table-schedule .table-fetch-row table tr {
+  padding-top: 10px;
+  text-align: center;
+  height: 50px;
+  border-bottom: 2px solid #e2e2e2;
+}
+#superadmin-dashboard .content #home .table-schedule-design-holder .table-schedule .table-fetch-row table tr th {
+  border: 1px solid #e2e2e2;
+  width: 14%;
+}
+#superadmin-dashboard .content #home .table-schedule-design-holder .table-schedule .table-fetch-row table tr:nth-child(11) {
+  background-color: #F5D04C;
 }
 #superadmin-dashboard .content #configuration {
   padding: 120px 20px 20px 20px;
@@ -448,7 +604,7 @@
 }
 #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-classroom .row, #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-section .row, #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-department .row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50px 1fr 1fr;
   gap: 20px;
   border-bottom: 2px solid #e2e2e2;
   padding-bottom: 10px;
@@ -458,6 +614,10 @@
   position: relative;
   display: grid;
   margin-top: 20px;
+}
+#superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-classroom .row .form-group h5, #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-section .row .form-group h5, #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-department .row .form-group h5 {
+  margin-top: 10px;
+  font-weight: normal;
 }
 #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-classroom .row .form-group input, #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-classroom .row .form-group select, #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-section .row .form-group input, #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-section .row .form-group select, #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-department .row .form-group input, #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .fetch-form-input-department .row .form-group select {
   height: 40px;
@@ -501,4 +661,4 @@
 }
 #superadmin-dashboard .content #configuration .configuration-content .content-configure-design .custom-modal form .end-form .form-add-row-btn:hover {
   box-shadow: 0 0 5px #5176E4;
-}/*# sourceMappingURL=style-dashboard.css.map */
+}/*# sourceMappingURL=dashboard.css.map */
