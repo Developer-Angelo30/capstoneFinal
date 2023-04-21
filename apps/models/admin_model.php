@@ -1,48 +1,69 @@
 <?php
 session_start();
+require_once("../validation/validation.php");
 include_once("../database/connection.php");
-include_once("../validation/validation.php");
 
 class Admin{
-    protected function login($_email, $_password){
 
-        $email = mysqli_real_escape_string(DB::DBConnection(), $_email);
-        $password = mysqli_real_escape_string(DB::DBConnection(), $_password);
+    protected $email;
+    protected $password;
+
+    protected function login(){
+
+        $email = mysqli_real_escape_string(DB::DBConnection(), $this->getEmail());
+        $password = mysqli_real_escape_string(DB::DBConnection(), $this->getPassword());
         if(!empty($email)){
             if(!empty($password)){
                 if(validation::Email($email)){
                      $sql = "SELECT `UserEmail` , `UserPassword` , `UserRole` FROM `users` WHERE `UserEmail` = '$email' ";
-                     $result = mysqli_query(DB::DBConnection(), $sql);
+                     $result = DB::DBConnection()->query($sql);
                      if($result->num_rows > 0){
                         $row = $result->fetch_assoc();
                         if(password_verify($password,$row['UserPassword'] )){
                             
-                            $_SESSION['UserEmail'] = $email;
-                            $_SESSION['role'] = $row['UserRole'];
+                            $_SESSION['email'] = $email;
+                            $_SESSION['password'] = $row['UserPassword'];
 
-                            DB::DBClose();
-
-                            return ($row['UserRole'] == "SUPER ADMIN" )? json_encode(array('status'=>true , "message"=>"./superAdmin/dashboard.php")) :  json_encode(array('status'=>true , "message"=>"./admin/dashboard.php"));
+                            $output = ($row['UserRole'] == 1 )? json_encode(array('status'=>true , "message"=>"./superAdmin/dashboard.php")) :  json_encode(array('status'=>true , "message"=>"./admin/dashboard.php"));
                         }
                         else{
-                            return json_encode(array("status"=>false , "error"=>"password" , "message"=>"Password not matched."));
+                            $output = json_encode(array("status"=>false , "error"=>"password" , "message"=>"Password not matched."));
                         }
                      }
                      else{
-                        return json_encode(array("status"=>false , "error"=>"email" ,"message"=>"Please double check your email."));
+                        $output = json_encode(array("status"=>false , "error"=>"email" ,"message"=>"Please double check your email."));
                      }
                 }
                 else{
-                    return json_encode(array("status"=>false , "error"=>"email" ,"message"=>"Please input valid email address."));
+                    $output = json_encode(array("status"=>false , "error"=>"email" ,"message"=>"Please input valid email address."));
                 }
             }
             else{
-                return json_encode(array("status"=>false , "error"=>"password" , "message"=>"Please input password."));
+                $output = json_encode(array("status"=>false , "error"=>"password" , "message"=>"Please input password."));
             }
         }
         else{
-            return json_encode(array("status"=>false , "error"=>"email" ,"message"=>"Please input email address."));
+            $output = json_encode(array("status"=>false , "error"=>"email" ,"message"=>"Please input email address."));
         }
+
+        DB::DBClose();
+        return $output;
+    }
+
+    protected function setEmail($email){
+        $this->email = $email;
+    }
+
+    protected function getEmail(){
+        return $this->email;
+    }
+
+    protected function setPassword($password){
+        $this->password = $password;
+    }
+
+    protected function getPassword(){
+        return $this->password;
     }
 
 }

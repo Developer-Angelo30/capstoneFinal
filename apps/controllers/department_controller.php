@@ -12,15 +12,15 @@ class DepartmentController extends Department {
                 return json_encode(array("status"=>false , "message"=>"slot# {$slot}, Department Fields are empty."));
             }
             else if(empty($name)){
-                return json_encode(array("status"=>false , "message"=>"slot# {$slot}, Deaparment Fullname Fields are empty."));
+                return json_encode(array("status"=>false , "message"=>"slot# {$slot}, Deparment Fullname Fields are empty."));
             }else{
                 //check if validate string
 
                 if(!validation::AlphaSpace($department)){
-                    die(json_encode(array("status"=>false , "message"=>"slot# {$slot}, Deaparment, accept alpha and whitespace only!")));
+                    die(json_encode(array("status"=>false , "message"=>"slot# {$slot}, Deparment, accept alpha and whitespace only!")));
                 }
                 else if(!validation::AlphaSpace($name)){
-                    die(json_encode(array("status"=>false ,"message"=>"slot# {$slot}, Deaparment Fullname accept alpha and whitespace only!")));
+                    die(json_encode(array("status"=>false ,"message"=>"slot# {$slot}, Deparment Fullname accept alpha and whitespace only!")));
                 }
             }
 
@@ -55,8 +55,21 @@ class DepartmentController extends Department {
     }
 
     function deleteDepartments($id){
-        $this->setID($id);
+        $this->setCode($id);
         return $this->deleteDepartment();
+    }
+
+    function updateDepartments($departments , $names){
+        
+
+        if(empty($departments) && empty($names)){
+            return json_encode(array("status"=>false, "message"=>"Inputs are empty!"));
+        }
+
+        $arrays = array_combine($departments, $names);
+        $this->setArray($arrays)
+;       return $this->updateDepartment();
+
     }
 
 }
@@ -70,6 +83,9 @@ if(!empty($action)){
     }
     else if($action == "deleteDepartments"){
         echo $controller->deleteDepartments($_POST['id']);
+    }
+    else if($action == "updateDepartments"){
+        echo $controller->updateDepartments($_POST['update-department'], $_POST['update-departmentName']);
     }
 }
 else{

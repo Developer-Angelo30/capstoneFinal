@@ -51,6 +51,17 @@ class SectionController extends Section {
         return $this->deleteSection();
     }
 
+    function updateSections($id , $sections , $years){
+
+        if( empty($id) && empty($sections) && empty($years)){
+            return json_encode(array("status"=>true , "message"=>"Input fields are empty!"));
+        }
+
+        $this->setArray(array($id, $sections , $years));
+        return $this->updateSection();
+
+    }
+
 }
 
 $action = $_POST['action'];
@@ -62,6 +73,9 @@ if(!empty($action)){
     }
     else if($action == "deleteSections"){
         echo $controller->deleteSections($_POST['id']);
+    }
+    else if($action == "updateSections"){
+        echo $controller->updateSections($_POST['update-id'], $_POST['update-section'], $_POST['update-year']);
     }
 }
 else{

@@ -20,7 +20,7 @@ class Subject{
             $code = mysqli_real_escape_string(DB::DBConnection(), $codes);
 
 
-            $sql_check= "SELECT SubjectCode FROM subjects WHERE SubjectCode = '$code' ";
+            $sql_check= "SELECT SubjectCode FROM subjects WHERE SubjectCode = '$code' AND SubjectDeleted = 1 ";
             $result_check = DB::DBConnection()->query($sql_check);
 
             if($result_check->num_rows == 1){
@@ -35,16 +35,34 @@ class Subject{
             $semester = mysqli_real_escape_string(DB::DBConnection(), $this->getSemester()[$key]);
             $laboratory = mysqli_real_escape_string(DB::DBConnection(),  $this->getLaboratory()[$key]);
 
-            $sql = "INSERT INTO `subjects`(
-                        `SubjectCode`, 
-                        `SubjectName`, 
-                        `SubjectYearLevel`, 
-                        `SubjectSemester`, 
-                        `Subject_has_laboratory`
-                    ) VALUES (
-                        '$code', '$name', '$year', '$semester', '$laboratory'
-                    )";
-            $result = DB::DBConnection()->query($sql);
+            $sql_CheckDeleted = "SELECT * FROM `subjects` WHERE  SubjectCode = '$code' AND SubjectDeleted = 0 ";
+            $result_CheckDelete = DB::DBConnection()->query($sql_CheckDeleted);
+            
+            if($result_CheckDelete->num_rows > 0){
+                $row = $result_CheckDelete->fetch_assoc();
+                $sql_updateActiveDeleted = "UPDATE `subjects` SET 
+                                                `SubjectName`='$name',
+                                                `SubjectYearLevel`='$year',
+                                                `SubjectSemester`='$semester',
+                                                `Subject_has_laboratory`='$laboratory',
+                                                `SubjectDeleted`= 1
+                                            WHERE SubjectCode  = '$code' ";
+                $result_updateActiveDeleted = DB::DBConnection()->query($sql_updateActiveDeleted);
+            }
+            else{
+                $sql_insert = "INSERT INTO `subjects`(
+                    `SubjectCode`, 
+                    `SubjectName`, 
+                    `SubjectYearLevel`, 
+                    `SubjectSemester`, 
+                    `Subject_has_laboratory`,
+                    `SubjectDeleted`
+                ) VALUES (
+                    '$code', '$name', '$year', '$semester', '$laboratory' , 1
+                )";
+                $result_insert = DB::DBConnection()->query($sql_insert);
+            }
+            
         }
 
         DB::DBClose();
@@ -55,7 +73,7 @@ class Subject{
     protected function readSubject(){
         $output = array();
 
-        $sql  ="SELECT * FROM `subjects`  GROUP BY SubjectCode  ";
+        $sql  ="SELECT * FROM `subjects` WHERE SubjectDeleted = 1  GROUP BY SubjectCode  ";
         $result = DB::DBConnection()->query($sql);
 
         if($result->num_rows > 0){
@@ -91,6 +109,10 @@ class Subject{
         return json_encode($output);
     }
 
+    protected function updateSubject(){
+
+    }
+
     protected function deleteSubject(){
 
         $id = mysqli_real_escape_string(DB::DBConnection(),$this->getID());
@@ -99,7 +121,7 @@ class Subject{
         $result_check = DB::DBConnection()->query($sql_check);
 
         if($result_check->num_rows == 1){
-            $sql =  "DELETE FROM `subjects` WHERE SubjectCode = '$id' ";
+            $sql =  "UPDATE `subjects` SET `SubjectDeleted`= 0 WHERE  SubjectCode = '$id' ";
             $result = DB::DBConnection()->query($sql);
 
             if($result){
@@ -113,6 +135,10 @@ class Subject{
         DB::DBClose();
         return $output;
 
+    }
+
+    protected function searchSubject(){
+        
     }
 
     protected function setID($id){

@@ -15,7 +15,7 @@ class Section{
             $section = mysqli_real_escape_string(DB::DBConnection(),$sections);
             $yearLevel = mysqli_real_escape_string(DB::DBConnection(),$yearLevels);
 
-            $sql_check = "SELECT * FROM `sections` WHERE SectionName = '$section' AND SectionYearLevel = '$yearLevel' ";
+            $sql_check = "SELECT * FROM `sections` WHERE SectionName = '$section' AND SectionYearLevel = '$yearLevel' AND SectionDeleted = 1 ";
             $result_check = DB::DBConnection()->query($sql_check);
             if($result_check->num_rows > 0){
                 if($yearLevel == 1 ){
@@ -44,8 +44,19 @@ class Section{
             $section = mysqli_real_escape_string(DB::DBConnection(),$sections);
             $yearLevel = mysqli_real_escape_string(DB::DBConnection(),$yearLevels);
 
-            $sql = "INSERT INTO `sections`(`SectionName`, `SectionYearLevel`) VALUES ('$section', '$yearLevel')";
-            $result = DB::DBConnection()->query($sql);
+            $sql_CheckDeleted = "SELECT * FROM `sections` WHERE  SectionName = '$section' AND SectionYearLevel = '$yearLevel' AND SectionDeleted = 0 ";
+            $result_CheckDelete = DB::DBConnection()->query($sql_CheckDeleted);
+            
+            if($result_CheckDelete->num_rows > 0){
+                $row = $result_CheckDelete->fetch_assoc();
+                $id = $row['SectionID'];
+                $sql_updateActiveDeleted = "UPDATE `sections` SET `SectionDeleted`= 1 WHERE SectionID  = '$id' ";
+                $result_updateActiveDeleted = DB::DBConnection()->query($sql_updateActiveDeleted);
+            }
+            else{
+                $sql_insert = "INSERT INTO `sections`(`SectionName`, `SectionYearLevel` , `SectionDeleted` ) VALUES ('$section', '$yearLevel' , 1)";
+                $result_insert = DB::DBConnection()->query($sql_insert);
+            }
         }
 
         DB::DBClose();
@@ -57,7 +68,7 @@ class Section{
 
         $output = array();
 
-        $sql  ="SELECT * FROM `sections`  GROUP BY `SectionName`  ";
+        $sql  ="SELECT * FROM `sections` WHERE `SectionDeleted` = 1  GROUP BY `SectionName`   ";
         $result = DB::DBConnection()->query($sql);
 
         if($result->num_rows > 0){
@@ -92,6 +103,52 @@ class Section{
         return json_encode($output);
     }
 
+    protected function updateSection(){
+        $id = mysqli_real_escape_string(DB::DBConnection(), $this->getArray()[0]);
+        $name = mysqli_real_escape_string(DB::DBConnection(), $this->getArray()[1]);
+        $year = mysqli_real_escape_string(DB::DBConnection(), $this->getArray()[2]);
+
+        $sql_check = "SELECT * FROM sections WHERE SectionID = '$id' AND SectionDeleted = 1 ";
+        $result_check = DB::DBConnection()->query($sql_check);
+        if($result_check->num_rows > 0){
+            $sql = "UPDATE `sections` SET `SectionName`='$name',`SectionYearLevel`='$year' WHERE SectionID = $id ";
+            $result = DB::DBConnection()->query($sql);
+
+            $output = json_encode(array("status"=>true, "message"=>"Successfully Updated.")); 
+        }
+        else{
+            $output = json_encode(array("status"=>false, "message"=>"Do not edit inspect element!")); 
+        }
+
+        DB::DBClose();
+        return json_encode($output);
+
+    }
+
+    protected function updateSectionShow(){
+        $id = mysqli_real_escape_string(DB::DBConnection(), $this->getID());
+
+        $sql = "SELECT * FROM sections  WHERE SectionID = '$id' AND SectionDeleted = 1 ";
+        $result = DB::DBConnection()->query($sql);
+
+        $output = array();
+
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $deparments = array(
+                    "id"=> $row['SectionID'] ,
+                    "name" => $row['SectionName'],
+                    "year" => $row['SectionYearLevel']
+                );
+                $output[] = $deparments;
+            }
+        }
+
+        DB::DBClose();
+        return json_encode($output);
+
+    }
+
     protected function deleteSection(){
 
         $id = mysqli_real_escape_string(DB::DBConnection(),$this->getID());
@@ -100,7 +157,7 @@ class Section{
         $result_check = DB::DBConnection()->query($sql_check);
 
         if($result_check->num_rows == 1){
-            $sql =  "DELETE FROM `sections` WHERE SectionID = '$id' ";
+            $sql =  "UPDATE `sections` SET  `SectionDeleted`= 0 WHERE SectionID = '$id' ";
             $result = DB::DBConnection()->query($sql);
 
             if($result){
@@ -113,6 +170,10 @@ class Section{
 
         DB::DBClose();
         return $output;
+
+    }
+
+    protected function searchSection(){
 
     }
 

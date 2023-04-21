@@ -1,13 +1,26 @@
 <?php
 session_start();
+require_once("./database/connection.php");
 
-if(isset($_SESSION['email']) && isset($_SESSION['role'])){
-    if((int)$_SESSION['role'] === 1){
-        header("location: ./superAdmin/dashboard.php");
+// print_r($_SESSION);
+
+if(isset($_SESSION['email']) && isset($_SESSION['password'])){
+    $email = mysqli_real_escape_string(DB::DBConnection(), $_SESSION['email']);
+    $password = mysqli_real_escape_string(DB::DBConnection(), $_SESSION['password']);
+
+    $sql = "SELECT UserEmail , UserPassword, UserRole FROM users WHERE UserEmail = '$email' AND UserPassword = '$password' ";
+    $result = DB::DBConnection()->query($sql);
+
+    if($result->num_rows > 0){
+        $row = $result->fetch_assoc();
+        if($row['UserRole'] == 1 ){
+            header("location: ./superAdmin/dashboard.php");
+        }
+        else{
+            header("location: ./admin/dashboard.php");
+        }
     }
-    else{
-        header("location: ./admin/dashboard.php");
-    }
+
 }
 
 ?>
@@ -60,6 +73,6 @@ if(isset($_SESSION['email']) && isset($_SESSION['role'])){
     </section>
     <script src="../assets/js/jquery-3.6.4.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../assets/js/customs.js"></script>
+    <script src="../assets/js/demo.js"></script>
 </body>
 </html>

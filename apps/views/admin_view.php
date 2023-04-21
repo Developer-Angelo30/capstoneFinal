@@ -3,8 +3,10 @@ include_once("../models/admin_model.php");
 
 class AdminView extends Admin{
 
-    public function logins($_email, $_password){
-        return $this->login($_email, $_password);
+    public function logins($email, $password){
+        $this->setEmail($email);
+        $this->setPassword($password);
+        return $this->login();
     }
 
 }

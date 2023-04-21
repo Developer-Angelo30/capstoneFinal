@@ -1,8 +1,26 @@
 <?php
 session_start();
+require_once("../database/connection.php");
 
-if(!isset($_SESSION['email']) && !isset($_SESSION['role'])){
-    header("location: ../index.php");
+if(isset($_SESSION['email']) && isset($_SESSION['password'])){
+    $email = mysqli_real_escape_string(DB::DBConnection(), $_SESSION['email']);
+    $password = mysqli_real_escape_string(DB::DBConnection(), $_SESSION['password']);
+
+    $sql = "SELECT UserEmail , UserPassword, UserRole FROM users WHERE UserEmail = '$email' AND UserPassword = '$password'";
+    $result = DB::DBConnection()->query($sql);
+
+    if($result->num_rows > 0){
+        $row = $result->fetch_assoc();
+        if($row['UserRole'] == 0){
+            header("location: ../admin/dashboard.php");
+        }
+    }else{
+        header("location: ../logout.php");
+    }
+    DB::DBClose();
+}
+else{
+    header("location: ../logout.php");
 }
 
 ?>
@@ -12,7 +30,7 @@ if(!isset($_SESSION['email']) && !isset($_SESSION['role'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../assets/css/dashboards.css">
+    <link rel="stylesheet" href="../../assets/css/dashboard-superadmin.css">
     <link rel="stylesheet" href="../../assets/fontawesome/css/all.css">
     <title>Schedlr</title>
 </head>
@@ -37,7 +55,7 @@ if(!isset($_SESSION['email']) && !isset($_SESSION['role'])){
                 <span>
                     <div class="span-data">
                         <h1>Prof. Angelo Reyes</h1>
-                        <small><?php echo $_SESSION['role']; ?></small>
+                        <small>SUPER ADMIN</small>
                     </div>
                 </span>
             </div>
@@ -51,7 +69,7 @@ if(!isset($_SESSION['email']) && !isset($_SESSION['role'])){
                                 <h1>Prof. Angelo Reyes</h1>
                             </center>
                             <div class="center-data" >
-                                <h5><?php echo $_SESSION['role']; ?></h5>
+                                <h5>SUPER ADMIN</h5>
                                 <small>CICT DEPARTMENT</small>
                             </div>
                         </div>
@@ -364,7 +382,7 @@ if(!isset($_SESSION['email']) && !isset($_SESSION['role'])){
     </section>
     <script src="../../assets/js/jquery-3.6.4.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../../assets/js/customs.js"></script>
+    <script src="../../assets/js/demo.js"></script>
     <script>
         $(document).ready(()=>{
 

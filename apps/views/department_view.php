@@ -8,14 +8,30 @@ class DepartmentVew extends Department {
         return $this->readDepartment();
     }
 
+    function updateDepartmentShows($code){
+        $this->setCode($code);
+        return $this->updateDepartmentShow();
+    }
+
+    function searchDepartments($code){
+        $this->setCode($code);
+        return $this->searchDepartment();
+    }
+
 }
 
 $action = $_POST['action'];
 
 if(!empty($action)){
-    $controller = new DepartmentVew;
+    $view = new DepartmentVew;
     if($action == "readDepartments"){
-        echo $controller->readDepartments();
+        echo $view->readDepartments();
+    }
+    else if($action == "searchDepartments"){
+        echo $view->searchDepartments($_POST['code']);
+    }
+    else if($action == "updateDepartmentShows"){
+        echo $view->updateDepartmentShows($_POST['code']);
     }
 }
 else{

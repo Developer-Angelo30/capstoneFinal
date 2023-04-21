@@ -463,7 +463,20 @@
 
                     .button-up-right {
                         display: grid;
-                        justify-content: end;
+                        grid-template-columns: 1fr 320px;
+
+                        input{
+                            margin-top: 20px;
+                            height: 40px;
+                            max-width: 300px;
+                            padding: 0 10px;
+                            outline: none;
+                            border: 1px solid $blue;
+
+                            &:focus{
+                                box-shadow: 0 0 10px $blue;
+                            }
+                        }
 
                         button{
                             width: 300px;
@@ -522,40 +535,64 @@
                             .table-data-account , .table-data-professor{
                                 @include configure_Table_Data();
                                 grid-template-columns: 1fr 1fr 1fr 50px;
-                                
-                                i{
+                                .fa-edit{
+                                    color: grey;
+                                    cursor:pointer;
+                                    font-size:20px;
+                                }
+
+                                .fa-trash{
                                     color: red;
                                     cursor: pointer;
+                                    font-size: 20px;
                                 }
                             }
 
                             .table-data-subject{
                                 @include configure_Table_Data();
                                 grid-template-columns: 100px 1fr 1fr 1fr 50px;
-                                
-                                i{
+                                .fa-edit{
+                                    color: grey;
+                                    cursor:pointer;
+                                    font-size:20px;
+                                }
+
+                                .fa-trash{
                                     color: red;
                                     cursor: pointer;
+                                    font-size: 20px;
                                 }
                             }
 
                             .table-data-classroom , .table-data-section{
                                 @include configure_Table_Data();
                                 grid-template-columns: 1fr 1fr 50px;
-                                
-                                i{
+                                .fa-edit{
+                                    color: grey;
+                                    cursor:pointer;
+                                    font-size:20px;
+                                }
+
+                                .fa-trash{
                                     color: red;
                                     cursor: pointer;
+                                    font-size: 20px;
                                 }
                             }
 
                             .table-data-department{
                                 @include configure_Table_Data();
                                 grid-template-columns: 200px 1fr 50px;
-                                
-                                i{
+                                .fa-edit{
+                                    color: grey;
+                                    cursor:pointer;
+                                    font-size:20px;
+                                }
+
+                                .fa-trash{
                                     color: red;
                                     cursor: pointer;
+                                    font-size: 20px;
                                 }
                             }
 
@@ -710,6 +747,76 @@
                                 }
                             }
 
+                        }
+                    }
+
+                    .custom-modal-update{
+                        z-index: 100;
+                        visibility:hidden;
+                        position: fixed;
+                        background-color: rgba(0,0,0,0.3);
+                        width: 100vw;
+                        height: 100vh;
+                        top: 0;
+                        left: 0;
+                        display: grid;
+                        justify-content: center;
+                        align-items: center;
+                        form{
+                            padding: 20px;
+                            width: 500px;
+                            background-color: white;
+
+                            .header-moda-update{
+                                display: grid;
+                                grid-template-columns: 1fr 10px;
+
+                                i{
+                                    cursor: pointer;
+                                    &:hover{
+                                        color: red;
+                                    }
+                                }
+                            }
+
+                            .form-group{
+                                position: relative;
+                                display: grid;
+                                margin-top: 20px;
+
+                                h5{
+                                    margin-top: 10px;
+                                    font-weight: normal;
+                                }
+
+                                .departmentCodeInput{
+                                    background-color: #f2f2f2;
+                                    outline: none;
+                                    border: none;
+                                }
+                                
+                                input, select{
+                                    height: 40px;
+                                    padding: 0 10px;
+    
+                                    &:focus{
+                                        outline: none;
+                                        border: 1px solid $blue;
+                                        box-shadow: 0 0 5px $blue;
+                                        
+                                    }
+                                }
+                            }
+
+                            .end-form{
+                                .form-submit-btn{
+                                    @include group-button-end-form();
+                                    background-color: $blue;
+                                    &:hover{
+                                        box-shadow: 0 0 5px $blue;
+                                    }
+                                }
+                            }
                         }
                     }
                 }

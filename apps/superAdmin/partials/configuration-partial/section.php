@@ -1,6 +1,7 @@
 <div class="scroll section-content content-configure-design ">
     <h1>ADD SECTION</h1> <hr>
     <span class="button-up-right">
+    <input type="input" class="search-section" placeholder="Search Section" >
         <button class="show-modal" >ADD SECTION</button>
     </span>
     <div class="custom-table">
@@ -42,6 +43,31 @@
             </div>
         </form>
     </div>
+    <div class="custom-modal-update">
+        <form id="update-form-section">
+            <div class="header-moda-update">
+                <h4>UPDATE SECTION</h4>
+                <i class="close-modal-update fa fa-close" ></i>
+            </div> <hr>
+            <div class="fetch-update-data">
+                <!-- <div class="form-group">
+                    <input type="text" id="update-section" name="update-section" placeholder="Section" >
+                </div>
+                <div class="form-group">
+                    <select name="update-year" id="update-year">
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                        <option value="5">5th Year</option>
+                    </select>
+                </div> -->
+            </div>
+            <div class="end-form">
+                <button type="submit" class="form-submit-btn" >Update</button>
+            </div>
+        </form>
+    </div>
 </div>
 <script>
     $(document).ready( ()=>{
@@ -66,6 +92,13 @@
             })
         }
         hideModal()
+
+        const hideModal_update = () =>{
+            $(document).on('click', '.close-modal-update' ,()=>{
+                $('.custom-modal-update').css({"visibility":'hidden'})
+            })
+        }
+        hideModal_update()
 
         const add_Row_Section = () =>{
             $('.form-add-row-btn-section').off('click').on('click', () => {

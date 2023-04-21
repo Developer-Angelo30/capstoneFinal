@@ -13,7 +13,7 @@ class Classroom {
         foreach($this->getArray() as $room=>$type){
 
             $number = mysqli_real_escape_string(DB::DBConnection(), $room);
-            $sql_check = "SELECT `ClassroomNumber` FROM `classrooms` WHERE  `ClassroomNumber` = '$number'  ";
+            $sql_check = "SELECT `ClassroomNumber` FROM `classrooms` WHERE  `ClassroomNumber` = '$number' AND ClassroomDeleted = 1  ";
             $result_check = DB::DBConnection()->query($sql_check);
 
             if($result_check->num_rows > 0){
@@ -28,8 +28,17 @@ class Classroom {
             $classNumber = mysqli_real_escape_string(DB::DBConnection(), $room );
             $classType = ucwords(mysqli_real_escape_string(DB::DBConnection(), $type));
 
-            $sql_insert = "INSERT INTO `classrooms`(`ClassroomNumber`, `ClassroomType`) VALUES ('$classNumber', '$classType')";
-            $result_insert = DB::DBConnection()->query($sql_insert);
+            $sql_CheckDeleted = "SELECT * FROM `classrooms` WHERE  ClassroomNumber = '$classNumber'  AND ClassroomDeleted = 0 ";
+            $result_CheckDelete = DB::DBConnection()->query($sql_CheckDeleted);
+            
+            if($result_CheckDelete->num_rows > 0){
+                $sql_updateActiveDeleted = "UPDATE `classrooms` SET ClassroomType = '$classType' , `ClassroomDeleted`= 1 WHERE `ClassroomNumber`='$classNumber' ";
+                $result_updateActiveDeleted = DB::DBConnection()->query($sql_updateActiveDeleted);
+            }
+            else{
+                $sql_insert = "INSERT INTO `classrooms`(`ClassroomNumber`, `ClassroomType` ,`ClassroomDeleted` ) VALUES ('$classNumber', '$classType' , 1 )";
+                $result_insert = DB::DBConnection()->query($sql_insert);
+            }
 
         }
         DB::DBClose();
@@ -40,7 +49,7 @@ class Classroom {
 
         $output = array();
 
-        $sql = "SELECT * FROM `classrooms` ";
+        $sql = "SELECT * FROM `classrooms` WHERE `ClassroomDeleted` = 1 ";
         $result = DB::DBConnection()->query($sql);
 
         if($result->num_rows > 0){
@@ -65,7 +74,7 @@ class Classroom {
         $result_check = DB::DBConnection()->query($sql_check);
 
         if($result_check->num_rows == 1){
-            $sql =  "DELETE FROM `classrooms` WHERE ClassroomNumber = '$id' ";
+            $sql =  "UPDATE `classrooms` SET `ClassroomDeleted`= 0 WHERE `ClassroomNumber` = '$id'";
             $result = DB::DBConnection()->query($sql);
 
             if($result){

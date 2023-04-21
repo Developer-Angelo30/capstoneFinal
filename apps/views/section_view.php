@@ -5,6 +5,11 @@ class SectionView extends Section {
 
     function readSections(){
         return $this->readSection();
+    } 
+
+    function updateSectionShows($id){
+        $this->setID($id);
+        return $this->updateSectionShow();
     }
 
 }
@@ -15,6 +20,9 @@ if(!empty($action)){
     $view = new SectionView;
     if($action == "readSections"){
         echo $view->readSections();
+    }
+    else if($action == "updateSectionShows"){
+       echo  $view->updateSectionShows($_POST['id']);
     }
 }
 else{

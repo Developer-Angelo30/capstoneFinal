@@ -59,7 +59,7 @@
                 </div> -->
             </div>
             <div class="end-form">
-                <button type="submit" class="form-submit-btn" ><i class="fa fa-spinner fa-spin " ></i>Submit</button>
+                <button type="submit" class="form-submit-btn" >Submit</button>
                 <button type="button" class="form-add-row-btn form-add-row-btn-subject" ><i class="fa fa-th " ></i> Add row</button>
             </div>
         </form>
@@ -127,8 +127,8 @@
                         </div>\
                         <div class='form-group'>\
                             <select name='add-laboratory[]' id='add-laboratory'>\
-                                <option value='0'>Without Laboratory</option>\
                                 <option value='1'>With Laboratory</option>\
+                                <option value='0'>Without Laboratory</option>\
                             </select>\
                         </div>\
                     </div>\

@@ -305,7 +305,6 @@ $(document).ready(()=>{
                             'error'
                         )
                     }
-                    
                 },
                 complete: ()=>{
                     $('.form-submit-btn').html('')
@@ -332,7 +331,10 @@ $(document).ready(()=>{
                             <span class='table-data-classroom' >\
                                 <strong>"+response[i]['number']+"</strong>\
                                 <strong>"+response[i]['type']+" Room</strong>\
-                                <strong><i id='delete-classsroom' delete-classroom='"+response[i]['number']+"' class='fa fa-trash' ></i></strong>\
+                                <strong>\
+                                    <i id='update-classsroom' update-classroom='"+response[i]['number']+"' class='fa fa-edit' ></i>\
+                                    <i id='delete-classsroom' delete-classroom='"+response[i]['number']+"' class='fa fa-trash' ></i>\
+                                </strong>\
                             </span>")
                     }
                 }
@@ -464,12 +466,120 @@ $(document).ready(()=>{
                         <span class='table-data-section' >\
                             <strong>"+response[i]['section']+"</strong>\
                             <strong>"+response[i]['year']+"</strong>\
-                            <strong><i delete-section='"+response[i]['id']+"' id='delete-section' class='fa fa-trash' ></i></strong>\
+                            <strong>\
+                                <i update-section='"+response[i]['id']+"' id='update-section' class='fa fa-edit' ></i>\
+                                <i delete-section='"+response[i]['id']+"' id='delete-section' class='fa fa-trash' ></i>\
+                            </strong>\
                         </span>")
                     }
                 }
             })
         }
+
+        const updateSection = () =>{
+            $(document).on('submit', '#update-form-section', function(event){
+                event.preventDefault()
+                var id = $('#section-id').attr('section-id')
+                var formData = new FormData(this);
+                formData.append("update-id",id)
+                formData.append("action", "updateSections")
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, update it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            url: "../../apps/controllers/section_controller.php",
+                            method: "POST",
+                            data: formData,
+                            // dataType: "JSON",
+                            processData: false,
+                            contentType: false,
+                            success: function(response){
+                                // if(response.status == true){
+                                //     Swal.fire(
+                                //         'Updated!',
+                                //         response.message,
+                                //         'success'
+                                //     )
+                                //     $('.custom-modal-update').css({"visibility":'hidden'})
+                                //     readSection();
+                                // }
+                                // else{
+                                //     Swal.fire(
+                                //         'Something Wrong!',
+                                //         response.message,
+                                //         'error'
+                                //     )
+                                // }
+                                console.log(response)
+                            }
+                        })
+                    }
+                })
+            })
+        }
+        updateSection()
+
+        const updateSectionShow= ()=>{
+            $(document).on('click', '#update-section', function(){
+                var id = $(this).attr('update-section')
+
+                //show modal
+                $('.custom-modal-update').css({"visibility":'visible'})
+
+                $.ajax({
+                    url:"../../apps/views/section_view.php",
+                    method: "POST",
+                    data: { 'id':id ,'action':"updateSectionShows"},
+                    dataType: "JSON",
+                    success: (response)=>{
+
+                        var year = '';
+                        if(response[0]['year'] == 1){
+                            year = "1st Year";
+                        }
+                        else if(response[0]['year'] == 2){
+                            year = "2nd Year";
+                        }
+                        else if(response[0]['year'] == 3){
+                            year = "3rd Year";
+                        }
+                        else if(response[0]['year'] == 4){
+                            year = "4th Year";
+                        }else{
+                            year = "5th Year";
+                        }
+
+                        $('.fetch-update-data').html('');
+                        $('.fetch-update-data').append('\
+                            <div class="form-group" id="section-id" section-id="'+response[0]['id']+'">\
+                                <input type="text" id="update-section" name="update-section" value="'+response[0]['name']+'" >\
+                            </div>\
+                            <div class="form-group">\
+                                <select name="update-year" id="update-year">\
+                                    <option value="1">1st Year</option>\
+                                    <option value="2">2 nd Year</option>\
+                                    <option value="3">3rd Year</option>\
+                                    <option value="4">4th Year</option>\
+                                    <option value="5">5th Year</option>\
+                                    <option selected value="'+response[0]['year']+'">Current Year: '+year+' </option>\
+                                </select>\
+                            </div>\
+                        ');
+                    },
+                })
+
+            })
+        }
+        updateSectionShow()
 
         const deleteSection = () =>{
             $(document).on('click', '#delete-section', function(){
@@ -594,12 +704,94 @@ $(document).ready(()=>{
                         <span class='table-data-department' >\
                             <strong>"+response[i]['code']+"</strong>\
                             <strong>"+response[i]['name']+"</strong>\
-                            <strong><i delete-department='"+response[i]['code']+"' id='delete-department' class='fa fa-trash' ></i></strong>\
+                            <strong>\
+                                <i update-department='"+response[i]['code']+"' id='update-department'  class='fa fa-edit' ></i>\
+                                <i delete-department='"+response[i]['code']+"' id='delete-department' class='fa fa-trash' ></i>\
+                            </strong>\
                         </span>")
                     }
                 }
             })
         }
+
+        const updateDepartment = () =>{
+            $(document).on('submit', '#update-form-department', function(event){
+                event.preventDefault()
+
+                var formData = new FormData(this);
+                formData.append("action", "updateDepartments")
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, update it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            url: "../../apps/controllers/department_controller.php",
+                            method: "POST",
+                            data: formData,
+                            dataType: "JSON",
+                            processData: false,
+                            contentType: false,
+                            success: function(response){
+                                if(response.status == true){
+                                    Swal.fire(
+                                        'Updated!',
+                                        response.message,
+                                        'success'
+                                    )
+                                    $('.custom-modal-update').css({"visibility":'hidden'})
+                                    readDepartment();
+                                }
+                                else{
+                                    Swal.fire(
+                                        'Something Wrong!',
+                                        response.message,
+                                        'error'
+                                    )
+                                }
+                            }
+                        })
+                    }
+                })
+            })
+        }
+        updateDepartment()
+
+        const updateDepartmentShow= ()=>{
+            $(document).on('click', '#update-department', function(){
+                var code = $(this).attr('update-department')
+
+                //show modal
+                $('.custom-modal-update').css({"visibility":'visible'})
+
+                $.ajax({
+                    url:"../../apps/views/department_view.php",
+                    method: "POST",
+                    data: { 'code':code ,'action':"updateDepartmentShows"},
+                    dataType: "JSON",
+                    success: (response)=>{
+                        $('.fetch-update-data').html('');
+                        $('.fetch-update-data').append('\
+                                <div class="form-group">\
+                                    <input type="text" class="departmentCodeInput" id="update-departmentCode" name="update-department[]" readonly value="'+response[0]['code']+'" >\
+                                </div>\
+                                <div class="form-group">\
+                                    <input type="text" id="update-departmentName" name="update-departmentName[]" value="'+response[0]['name']+'" >\
+                                </div>\
+                        ');
+                    },
+                })
+
+            })
+        }
+        updateDepartmentShow()
 
         const deleteDepartment = () =>{
             $(document).on('click', '#delete-department', function(){
@@ -643,6 +835,39 @@ $(document).ready(()=>{
         }
         deleteDepartment()
 
+        const searchDepartment = () =>{
+            $(document).on('keyup', '.search-department', function(){
+                var search = $(this).val()
+
+                if(search == ""){
+                    readDepartment()
+                }
+                else{
+                    $.ajax({
+                        url: '../../apps/views/department_view.php',
+                        method: "POST",
+                        data: { 'code':search ,'action':'searchDepartments'},
+                        dataType: "JSON",
+                        success: (response)=> {
+                            $('#fetch-department').html('')
+                            for(i in response){
+                                $('#fetch-department').append("\
+                                <span class='table-data-department' >\
+                                    <strong>"+response[i]['code']+"</strong>\
+                                    <strong>"+response[i]['name']+"</strong>\
+                                    <strong>\
+                                        <i update-department='"+response[i]['code']+"' id='update-department' class='fa fa-edit' ></i>\
+                                        <i delete-department='"+response[i]['code']+"' id='delete-department' class='fa fa-trash' ></i>\
+                                    </strong>\
+                                </span>")
+                            }
+                        }
+                    })
+                }
+                
+            })
+        }
+        searchDepartment()
         // CONFIGURE DEPARTMENT END -----------------------
 
     }

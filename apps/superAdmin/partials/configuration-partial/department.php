@@ -1,6 +1,7 @@
 <div class="scroll department-content content-configure-design">
     <h1>ADD DEPARTMENT</h1> <hr>
     <span class="button-up-right">
+        <input type="input" class="search-department" placeholder="Search Department" >
         <button class="show-modal" >ADD DEPARTMENT</button>
     </span>
     <div class="custom-table">
@@ -36,6 +37,25 @@
             </div>
         </form>
     </div>
+    <div class="custom-modal-update">
+        <form id="update-form-department">
+            <div class="header-moda-update">
+                <h4>UPDATE DEPARMENT</h4>
+                <i class="close-modal-update fa fa-close" ></i>
+            </div> <hr>
+            <div class="fetch-update-data">
+                <div class="form-group">
+                    <input type="text" id="update-departmentCode" name="update-department" placeholder="ex. CICT" >
+                </div>
+                <div class="form-group">
+                    <input type="text" id="update-departmentName" name="update-departmentName" placeholder="ex. College of Information and Communications Technology" >
+                </div>
+            </div>
+            <div class="end-form">
+                <button type="submit" class="form-submit-btn" >Update</button>
+            </div>
+        </form>
+    </div>
 </div>
 <script>
     $(document).ready( ()=>{
@@ -56,10 +76,16 @@
             $(document).on('click', '.close-modal' ,()=>{
                 $('.custom-modal').css({"visibility":'hidden'})
                 $('.row').remove()
-                slot = 1;
             })
         }
         hideModal()
+
+        const hideModal_update = () =>{
+            $(document).on('click', '.close-modal-update' ,()=>{
+                $('.custom-modal-update').css({"visibility":'hidden'})
+            })
+        }
+        hideModal_update()
 
         const add_Row_Department = () =>{
             $('.form-add-row-btn-department').off('click').on('click', () => {
