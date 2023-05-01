@@ -54,6 +54,9 @@ class Classroom {
 
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
+
+                
+
                 $classroom = array(
                     "number"=> $row['ClassroomNumber'],
                     "type" => $row['ClassroomType']
@@ -63,7 +66,7 @@ class Classroom {
             
         }
 
-        DB::DBConnection();
+        DB::DBClose();
         return json_encode($output);
     }
 

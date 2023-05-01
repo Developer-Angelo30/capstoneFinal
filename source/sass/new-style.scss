@@ -378,6 +378,20 @@
 
         }
 
+        #create{
+            padding: 120px 20px 20px 20px;
+            height: 100vh;
+            width: 100%;
+            overflow-y: auto;
+            position: relative;
+
+            .box-create{
+                background-color: white;
+                box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+                padding: 10px;
+            }
+        }
+
         #configuration{
             padding: 120px 20px 20px 20px;
             height: 100vh;

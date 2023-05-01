@@ -58,7 +58,7 @@
                     <table>
                         <tr>
                             <th>7:00 AM</th>
-                            <th></th>
+                            <th rowspan="3" >Test 1</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -94,7 +94,7 @@
                         <tr>
                             <th>9:00 AM</th>
                             <th></th>
-                            <th></th>
+                            <th rowspan="3" bgcolor="#e2e2e2">Test 2</th>
                             <th></th>
                             <th></th>
                             <th></th>

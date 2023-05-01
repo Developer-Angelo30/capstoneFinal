@@ -12,6 +12,11 @@ class SectionView extends Section {
         return $this->updateSectionShow();
     }
 
+    function searchSections($name){
+        $this->setArray(array($name));
+        return $this->searchSection();
+    }
+
 }
 
 $action = $_POST['action'];
@@ -23,6 +28,9 @@ if(!empty($action)){
     }
     else if($action == "updateSectionShows"){
        echo  $view->updateSectionShows($_POST['id']);
+    }
+    else if($action == "searchSections"){
+        echo $view->searchSections($_POST['name']);
     }
 }
 else{

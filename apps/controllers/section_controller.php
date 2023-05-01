@@ -79,7 +79,7 @@ if(!empty($action)){
     }
 }
 else{
-    die(array("status"=>false , "message"=>"There is a problem; please contact the developer."));
+    return json_encode(array("status"=>false , "message"=>"There is a problem; please contact the developer."));
 }
 
 

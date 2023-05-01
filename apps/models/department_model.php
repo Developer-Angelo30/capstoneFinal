@@ -14,7 +14,7 @@ class Department {
 
             $slot = 1;
 
-            $sql = "SELECT * FROM `departments` WHERE  department = '$department' AND DepartmentName = '$fullname' AND DepartmentDeleted = 1 ";
+            $sql = "SELECT * FROM `departments` WHERE  department = '$department' AND DepartmentDeleted = 1 ";
             $result = DB::DBConnection()->query($sql);
 
             if($result->num_rows > 0){
@@ -26,7 +26,7 @@ class Department {
             $department = mysqli_real_escape_string(DB::DBConnection(), $deparments);
             $fullname = mysqli_real_escape_string(DB::DBConnection(), $fullnames);
 
-            $sql_CheckDeleted = "SELECT * FROM `departments` WHERE  department = '$department' AND DepartmentName = '$fullname' AND DepartmentDeleted = 0 ";
+            $sql_CheckDeleted = "SELECT * FROM `departments` WHERE  department = '$department' AND DepartmentDeleted = 0 ";
             $result_CheckDelete = DB::DBConnection()->query($sql_CheckDeleted);
             
             if($result_CheckDelete->num_rows > 0){
@@ -44,7 +44,7 @@ class Department {
     }
 
     protected function readDepartment(){
-        $sql = "SELECT * FROM departments WHERE DepartmentDeleted = 1 ";
+        $sql = "SELECT * FROM departments WHERE DepartmentDeleted = 1 ORDER BY 'Department' ";
         $result = DB::DBConnection()->query($sql);
 
         
@@ -69,7 +69,7 @@ class Department {
     protected function updateDepartmentShow(){
         $code = mysqli_real_escape_string(DB::DBConnection(), $this->getCode());
 
-        $sql = "SELECT * FROM departments  WHERE Department = '$code' AND DepartmentDeleted = 1 ";
+        $sql = "SELECT * FROM departments  WHERE Department = '$code' AND DepartmentDeleted = 1  ";
         $result = DB::DBConnection()->query($sql);
 
         $output = array();
@@ -142,7 +142,7 @@ class Department {
     protected function searchDepartment(){
 
         $code = mysqli_real_escape_string(DB::DBConnection(), $this->getCode());
-        $sql = "SELECT * FROM departments WHERE Department LIKE '%{$code}%' AND DepartmentDeleted = 1 ";
+        $sql = "SELECT * FROM departments WHERE Department  LIKE'%{$code}%' OR DepartmentName  LIKE'%{$code}%' AND DepartmentDeleted = 1 ORDER BY 'Department' ";
         $result = DB::DBConnection()->query($sql);
         $output = array();
 

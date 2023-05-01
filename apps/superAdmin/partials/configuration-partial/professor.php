@@ -10,13 +10,8 @@
             <strong>Designation</strong>
             <strong>Action</strong>
         </span>
-        <div class="table-body">
-            <span class="table-data-professor" >
-                <strong>Angelo Reyes</strong>
-                <strong>Associative Professor</strong>
-                <strong>w/o Designated</strong>
-                <strong><i class="fa fa-trash" ></i></strong>
-            </span>
+        <div class="table-body" id="fetch-professor" >
+            
         </div>
     </div>
     <div class="custom-modal">
@@ -25,23 +20,23 @@
             <div class="fetch-form-input fetch-form-input-professor">
                 <div class="row">
                     <div class="form-group">
-                        <input type="text" id="add-fname" name="add-fname[]" placeholder="First Name" >
+                        <input type="text" id="FirstName" name="FirstName[]" placeholder="First Name" >
                     </div>
                     <div class="form-group">
-                        <input type="text" id="add-lname" name="add-lname[]" placeholder="Last Name" >
+                        <input type="text" id="LastName" name="LastName[]" placeholder="Last Name" >
                     </div>
                     <div class="form-group">
-                        <select name="add-rank[]" id="add-rank">
-                        <option value="1" >Instructor</option>    
-                        <option value="2">Assitant Professor</option>
-                        <option value="3">Associative Professor</option>
-                        <option value="4">Professor</option>
+                        <select name="rank[]" id="rank">
+                        <option value="Instructor" >Instructor</option>    
+                        <option value="Assistant Professor">Assitant Professor</option>
+                        <option value="Associative Professor">Associative Professor</option>
+                        <option value="Professor">Professor</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <select name="add-designated[]" id="add-designated">
-                            <option value='w/o Designated' >w/o Designated</option>\
-                            <option value='Designated' >Designated</option>\
+                        <select name="designation[]" id="designation">
+                            <option value='0' >w/o Designated</option>\
+                            <option value='1' >Designated</option>\
                         </select>
                     </div>
                 </div>

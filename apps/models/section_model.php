@@ -60,7 +60,6 @@ class Section{
         }
 
         DB::DBClose();
-
         return json_encode(array("status"=>true, "message"=>"Successfully Inserted." ));
     }
 
@@ -68,7 +67,7 @@ class Section{
 
         $output = array();
 
-        $sql  ="SELECT * FROM `sections` WHERE `SectionDeleted` = 1  GROUP BY `SectionName`   ";
+        $sql  ="SELECT * FROM `sections` WHERE `SectionDeleted` = 1  ORDER BY `SectionName`   ";
         $result = DB::DBConnection()->query($sql);
 
         if($result->num_rows > 0){
@@ -111,17 +110,26 @@ class Section{
         $sql_check = "SELECT * FROM sections WHERE SectionID = '$id' AND SectionDeleted = 1 ";
         $result_check = DB::DBConnection()->query($sql_check);
         if($result_check->num_rows > 0){
-            $sql = "UPDATE `sections` SET `SectionName`='$name',`SectionYearLevel`='$year' WHERE SectionID = $id ";
-            $result = DB::DBConnection()->query($sql);
 
-            $output = json_encode(array("status"=>true, "message"=>"Successfully Updated.")); 
+            $sql_check_new_data = "SELECT * FROM sections WHERE SectionName = '$name' AND SectionYearLevel = '$year' ";
+            $sql_result_new_data = DB::DBConnection()->query($sql_check_new_data);
+
+            if($sql_result_new_data->num_rows == 0){
+                $sql = "UPDATE `sections` SET `SectionName`='$name',`SectionYearLevel`='$year' WHERE SectionID = $id ";
+                $result = DB::DBConnection()->query($sql);
+
+                $output = json_encode(array("status"=>true, "message"=>"Successfully Updated.")); 
+            }
+            else{
+                $output = json_encode(array("status"=>false, "message"=>"Already recoreded in database.")); 
+            }
         }
         else{
             $output = json_encode(array("status"=>false, "message"=>"Do not edit inspect element!")); 
         }
 
         DB::DBClose();
-        return json_encode($output);
+        return $output;
 
     }
 
@@ -174,7 +182,42 @@ class Section{
     }
 
     protected function searchSection(){
+        
+        $name = mysqli_real_escape_string(DB::DBConnection(), $this->getArray()[0]);
+        $sql = "SELECT * FROM sections WHERE SectionName LIKE '%$name%' AND `SectionDeleted` = 1   ORDER BY `SectionName`  ";
+        $result = DB::DBConnection()->query($sql);
+        $output = array();
 
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+
+                if($row['SectionYearLevel'] == 1){
+                    $year = "1st Year";
+                }
+                else if($row['SectionYearLevel'] == 2){
+                    $year = "2nd Year";
+                }
+                else if($row['SectionYearLevel'] == 3){
+                    $year = "3rd Year";
+                }
+                else if($row['SectionYearLevel'] == 4){
+                    $year = "4th Year";
+                }
+                else{
+                    $year = "5th Year";
+                }
+
+                $sections = array(
+                    "id"=> $row['SectionID'] ,
+                    "section" => $row['SectionName'],
+                    "year" => $year
+                );
+                $output[] = $sections;
+            }
+        }
+
+        DB::DBClose();
+        return json_encode($output);
     }
 
     protected function setID($id){
